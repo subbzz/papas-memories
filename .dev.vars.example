@@ -1,0 +1,4 @@
+# Copy to .dev.vars for `npx wrangler pages dev` (never commit .dev.vars).
+# Production values live in wrangler.toml [vars] and Cloudflare encrypted secrets.
+GRAPH_CLIENT_SECRET="paste-for-local-testing-only"
+TURNSTILE_SECRET="1x0000000000000000000000000000000AA"   # Cloudflare's always-pass test secret

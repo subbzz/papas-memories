@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Papa's Memories Architecture</title>
+<meta name="description" content="Architecture and request flows for mem.ss3.dev">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#eef2f1; --surface:#ffffff; --ink:#172529; --muted:#566a6f; --line:#c3cfce;
+  --accent:#c2410c; --accent-soft:#fbe6dc;
+  --cf:#fdf1e7; --cf-edge:#e9a46b; --ms:#e8f0fb; --ms-edge:#7ea3d6; --box:#ffffff;
+  --ok:#23794a;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1618; --surface:#152124; --ink:#e3ecec; --muted:#93a6a8; --line:#304246;
+    --accent:#fb8a4c; --accent-soft:#3a2319;
+    --cf:#2a1d14; --cf-edge:#a8653a; --ms:#15233a; --ms-edge:#4f76ad; --box:#1b292d; --ok:#5fcf8f;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1618; --surface:#152124; --ink:#e3ecec; --muted:#93a6a8; --line:#304246;
+  --accent:#fb8a4c; --accent-soft:#3a2319;
+  --cf:#2a1d14; --cf-edge:#a8653a; --ms:#15233a; --ms-edge:#4f76ad; --box:#1b292d; --ok:#5fcf8f;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body);padding-inline:clamp(16px,4vw,48px);padding-block:32px 64px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:40px}
+header{display:grid;gap:10px;max-width:72ch}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font:800 clamp(2rem,4.6vw,3.3rem)/1.05 var(--display);font-stretch:112%;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h2{font:750 1.55rem/1.15 var(--display);font-stretch:108%;margin:0;text-wrap:balance}
+h3{font:700 1.05rem/1.3 var(--display);margin:0}
+p{margin:0}
+.lede{color:var(--muted);font-size:1.08rem;max-width:68ch}
+.hosts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{font:600 12.5px/1 var(--mono);padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);white-space:nowrap}
+section{display:grid;gap:16px}
+.section-head{display:grid;gap:6px;max-width:72ch}
+.section-head p{color:var(--muted)}
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+.scroll{overflow-x:auto}
+figcaption{color:var(--muted);font-size:.92rem;margin-top:12px;max-width:80ch}
+svg.arch{display:block;width:100%;min-width:900px;height:auto;color:var(--ink);font-family:var(--body)}
+.zone-cf{fill:var(--cf);stroke:var(--cf-edge)}
+.zone-ms{fill:var(--ms);stroke:var(--ms-edge)}
+.zone-cl{fill:none;stroke:var(--line);stroke-dasharray:4 4}
+.node{fill:var(--box);stroke:var(--line)}
+.node-hot{fill:var(--accent-soft);stroke:var(--accent)}
+.zt{font:700 12px var(--mono);letter-spacing:.08em;fill:var(--muted)}
+.nt{font:700 14px var(--body);fill:var(--ink)}
+.ns{font:400 11.5px var(--mono);fill:var(--muted)}
+.el{font:500 11px var(--mono);fill:var(--ink)}
+.el-hot{font:600 11px var(--mono);fill:var(--accent)}
+.edge{stroke:var(--ink);fill:none;stroke-width:1.3}
+.edge-hot{stroke:var(--accent);fill:none;stroke-width:2.2}
+.edge-dash{stroke:var(--muted);fill:none;stroke-width:1.3;stroke-dasharray:5 4}
+.legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:10px;font-size:.88rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.sw{width:26px;height:0;border-top:2px solid var(--ink);display:inline-block}
+.sw.hot{border-top:3px solid var(--accent)}
+.sw.dash{border-top:2px dashed var(--muted)}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:20px}
+pre.mermaid{margin:0;background:transparent;font-family:var(--body)}
+.notes{margin:12px 0 0;padding-left:1.1em;color:var(--muted);font-size:.92rem;display:grid;gap:4px;max-width:70ch}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.93rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 11.5px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+td code,.mono{font-family:var(--mono);font-size:.86em}
+td:first-child{font-weight:650;white-space:nowrap}
+.tbl{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow-x:auto}
+footer{color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">mem.ss3.dev · solution architecture</span>
+    <h1>Papa's Memories Architecture</h1>
+    <p class="lede">A static scrapbook site on Cloudflare Pages. Media stays in a private SharePoint site and is only ever streamed through a server-side proxy. Two sign-in paths meet at one gate: Microsoft Entra ID for Dada and Mama, and a Cloudflare Access email PIN plus Dada's approval for family.</p>
+    <div class="hosts">
+      <span class="chip">mem.ss3.dev/ · Entra ID</span>
+      <span class="chip">mem.ss3.dev/family/ · Access OTP</span>
+      <span class="chip">mem.ss3.dev/admin/ · owner only</span>
+      <span class="chip">111 clips · 23 voice · 8 Mama · 80 video</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head">
+      <h2>Components and trust boundaries</h2>
+      <p>Browsers never hold a SharePoint address. Every clip travels through <span class="mono">/api/stream</span>, which re-checks a signed six-hour link on each request before fetching from Graph with an app identity that can read only this one site.</p>
+    </div>
+    <figure>
+      <div class="scroll">
+      <svg class="arch" viewBox="0 0 1110 640" role="img" aria-label="Browsers pass Cloudflare's human check and Access, load static pages, and call Pages Functions. The Functions verify identities, keep approvals in KV, and stream media from SharePoint using a Sites.Selected app identity from Entra ID. Dada and Mama also sign in to Entra ID directly.">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+          <marker id="ahot" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="el-hot" style="fill:var(--accent)"/></marker>
+        </defs>
+
+        <!-- zones -->
+        <rect x="16" y="120" width="196" height="330" rx="10" class="zone-cl"/>
+        <text x="28" y="142" class="zt">DEVICES</text>
+        <rect x="232" y="56" width="468" height="568" rx="12" class="zone-cf"/>
+        <text x="248" y="78" class="zt">CLOUDFLARE · ss3.dev</text>
+        <rect x="740" y="56" width="354" height="568" rx="12" class="zone-ms"/>
+        <text x="756" y="78" class="zt">MICROSOFT 365 · SEPTAGON TENANT</text>
+
+        <!-- devices -->
+        <rect x="30" y="160" width="168" height="76" rx="8" class="node"/>
+        <text x="44" y="186" class="nt">Desktop browser</text>
+        <text x="44" y="206" class="ns">Dada · Mama</text>
+        <text x="44" y="222" class="ns">MSAL · sessionStorage</text>
+        <rect x="30" y="350" width="168" height="76" rx="8" class="node"/>
+        <text x="44" y="376" class="nt">Mobile browser</text>
+        <text x="44" y="396" class="ns">Family · Gmail</text>
+        <text x="44" y="412" class="ns">Apple media stack</text>
+
+        <!-- cloudflare nodes -->
+        <rect x="252" y="96" width="196" height="60" rx="8" class="node"/>
+        <text x="266" y="120" class="nt">WAF managed challenge</text>
+        <text x="266" y="140" class="ns">pages only · skips /api/</text>
+        <rect x="484" y="96" width="196" height="60" rx="8" class="node"/>
+        <text x="498" y="120" class="nt">Access · Family app</text>
+        <text x="498" y="140" class="ns">/family  /api/family · OTP</text>
+
+        <rect x="252" y="190" width="196" height="60" rx="8" class="node"/>
+        <text x="266" y="214" class="nt">Pages static assets</text>
+        <text x="266" y="234" class="ns">HTML · JS · strict CSP</text>
+        <rect x="484" y="190" width="150" height="60" rx="8" class="node"/>
+        <text x="498" y="214" class="nt">Turnstile</text>
+        <text x="498" y="234" class="ns">request form</text>
+
+        <rect x="252" y="286" width="428" height="190" rx="8" class="node"/>
+        <text x="266" y="310" class="nt">Pages Functions</text>
+        <text x="266" y="334" class="ns">/api/family/me · request   Access JWT → status</text>
+        <text x="266" y="354" class="ns">/api/ms/token              Entra ID token → link</text>
+        <text x="266" y="374" class="ns">/api/log/visit             Entra ID token → log</text>
+        <text x="266" y="394" class="ns">/api/admin/*               owner only · health</text>
+        <rect x="262" y="408" width="408" height="56" rx="6" class="node-hot"/>
+        <text x="276" y="430" class="nt" style="fill:var(--accent)">/api/stream/‹token›/‹folder›/‹file›</text>
+        <text x="276" y="450" class="ns">HMAC link · allow-list · Range passthrough</text>
+
+        <rect x="252" y="520" width="196" height="84" rx="8" class="node"/>
+        <text x="266" y="544" class="nt">KV · FAMILY</text>
+        <text x="266" y="564" class="ns">u:‹email› approvals</text>
+        <text x="266" y="582" class="ns">log:‹time› 1-year TTL</text>
+        <rect x="484" y="520" width="196" height="84" rx="8" class="node"/>
+        <text x="498" y="544" class="nt">Encrypted secrets</text>
+        <text x="498" y="564" class="ns">GRAPH_CLIENT_SECRET</text>
+        <text x="498" y="582" class="ns">TURNSTILE_SECRET</text>
+
+        <!-- microsoft nodes -->
+        <rect x="760" y="96" width="314" height="178" rx="8" class="node"/>
+        <text x="774" y="120" class="nt">Entra ID</text>
+        <text x="774" y="146" class="ns">SPA app · delegated</text>
+        <text x="774" y="162" class="ns">  User.Read · Files.Read.All</text>
+        <text x="774" y="188" class="ns">Media Proxy app · application</text>
+        <text x="774" y="204" class="ns">  Sites.Selected → read on 1 site</text>
+        <text x="774" y="230" class="ns">JWKS · signing keys</text>
+        <text x="774" y="254" class="ns">tenant 28f3df7e…b7b4</text>
+
+        <rect x="760" y="318" width="314" height="158" rx="8" class="node"/>
+        <text x="774" y="342" class="nt">SharePoint · Papa's Memories</text>
+        <text x="774" y="366" class="ns">Documents / Audio   23 mp3</text>
+        <text x="774" y="384" class="ns">Documents / Mama     8 mp3</text>
+        <text x="774" y="402" class="ns">Documents / Video   80 mp4</text>
+        <text x="774" y="428" class="ns">private · Visitors = Read</text>
+        <text x="774" y="446" class="ns">download.aspx · 206 ranges</text>
+
+        <rect x="760" y="520" width="314" height="84" rx="8" class="node"/>
+        <text x="774" y="544" class="nt">OneDrive · Papa folder</text>
+        <text x="774" y="564" class="ns">originals + Mama WAV</text>
+        <text x="774" y="582" class="ns">site code · wrangler.toml</text>
+
+        <!-- edges: entry -->
+        <path d="M198,188 H222 V126 H252" class="edge" marker-end="url(#ah)"/>
+        <path d="M198,378 H222 V140 H252" class="edge" marker-end="url(#ah)"/>
+        <text x="206" y="116" class="el">HTTPS</text>
+        <path d="M448,126 H484" class="edge" marker-end="url(#ah)"/>
+        <path d="M350,156 V190" class="edge" marker-end="url(#ah)"/>
+        <text x="356" y="178" class="el">pass</text>
+        <path d="M660,156 V286" class="edge" marker-end="url(#ah)"/>
+        <text x="666" y="214" class="el">JWT</text>
+        <path d="M559,250 V286" class="edge" marker-end="url(#ah)"/>
+        <text x="520" y="272" class="el">token</text>
+
+        <!-- desktop to Entra and Graph (delegated) -->
+        <path d="M114,160 V30 H917 V96" class="edge" marker-end="url(#ah)"/>
+        <text x="400" y="24" class="el">MSAL sign-in (auth code + PKCE) · ID + access tokens</text>
+        <path d="M90,160 V42 H1086 V396 H1074" class="edge-dash" marker-end="url(#ah)"/>
+        <text x="772" y="54" class="el" style="fill:var(--muted)">Graph · list files + thumbnails (delegated)</text>
+
+        <!-- functions to microsoft -->
+        <path d="M680,318 H716 V200 H760" class="edge" marker-end="url(#ah)"/>
+        <text x="688" y="300" class="el">JWKS · client credentials</text>
+        <path d="M670,436 H760" class="edge-hot" marker-end="url(#ahot)"/>
+        <text x="684" y="428" class="el-hot">ranged GET</text>
+
+        <!-- functions to kv / secrets -->
+        <path d="M350,476 V520" class="edge" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <text x="356" y="502" class="el">approvals · log</text>
+        <path d="M582,520 V476" class="edge" marker-end="url(#ah)"/>
+        <text x="588" y="502" class="el">bindings</text>
+
+        <!-- stream back to devices -->
+        <path d="M262,448 H214 V404 H198" class="edge-hot" marker-end="url(#ahot)"/>
+        <path d="M262,448 H214 V222 H198" class="edge-hot" marker-end="url(#ahot)"/>
+        <text x="24" y="472" class="el-hot">206 audio/video</text>
+
+        <!-- one-time copy -->
+        <path d="M917,520 V476" class="edge-dash" marker-end="url(#ah)"/>
+        <text x="924" y="502" class="el" style="fill:var(--muted)">one-time server copy</text>
+      </svg>
+      </div>
+      <div class="legend">
+        <span><i class="sw hot"></i>media path (proxied, signed link)</span>
+        <span><i class="sw"></i>control and identity calls</span>
+        <span><i class="sw dash"></i>delegated listing · one-time copy</span>
+      </div>
+      <figcaption>Dada and Mama list files with their own delegated Graph permission; everyone's playback goes through the proxy, whose app identity is limited to read on the Papa's Memories site by Sites.Selected.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Request flows</h2>
+      <p>The desktop flow is Dada or Mama on the main site. The mobile flow is a family member on an iPhone: the media player fetches without cookies, which is why playback uses a signed link instead of the Access session.</p>
+    </div>
+    <div class="pair">
+      <figure>
+        <h3>Web browser · Dada / Mama</h3>
+<pre class="mermaid">
+sequenceDiagram
+  autonumber
+  actor U as Dada / Mama
+  participant B as Desktop browser
+  participant CF as Cloudflare WAF + Pages
+  participant E as Entra ID
+  participant G as Graph / SharePoint
+  participant F as Pages Functions
+  participant K as KV FAMILY
+  U->>B: open mem.ss3.dev
+  B->>CF: GET /
+  CF-->>B: managed challenge, then HTML + JS
+  B->>E: MSAL redirect (auth code + PKCE)
+  E-->>B: ID token + Graph token
+  B->>G: list Audio, Video, Mama (delegated)
+  G-->>B: file names + thumbnails
+  B->>F: POST /api/log/visit (ID token)
+  F->>E: fetch JWKS, verify token
+  F->>K: write log entry "Dada"
+  B->>F: POST /api/ms/token (ID token)
+  F-->>B: signed media link (6 h)
+  U->>B: press play
+  B->>F: GET /api/stream/link/Video/file (Range)
+  F->>F: verify HMAC, owner or Mama
+  F->>E: client credentials (Sites.Selected)
+  F->>G: item lookup, ranged download
+  G-->>F: 206 Partial Content
+  F-->>B: 206 video/mp4 (no SharePoint URL)
+</pre>
+        <ul class="notes">
+          <li>Tokens live in sessionStorage and end with the browser tab.</li>
+          <li>Opening 🛂 Approvals reuses the same ID token; the server accepts only <span class="mono">s.subiah@septagon.com.au</span>.</li>
+        </ul>
+      </figure>
+
+      <figure>
+        <h3>Mobile browser · family (Gmail)</h3>
+<pre class="mermaid">
+sequenceDiagram
+  autonumber
+  actor P as Family member
+  participant M as iPhone browser
+  participant CF as Cloudflare WAF + Access
+  participant F as Pages Functions
+  participant K as KV FAMILY
+  actor D as Dada
+  participant G as Graph / SharePoint
+  P->>M: open mem.ss3.dev/family/
+  M->>CF: GET /family/
+  CF-->>M: managed challenge
+  CF-->>P: email a 6-digit PIN
+  P->>CF: enter PIN
+  CF-->>M: session cookie + family page
+  M->>F: GET /api/family/me (Access JWT)
+  F->>K: read u:email, write log
+  F-->>M: status "none"
+  P->>M: name, note, Turnstile tick
+  M->>F: POST /api/family/request
+  F->>K: save status "pending"
+  D->>F: Approve (control room)
+  F->>K: status "approved"
+  P->>M: Check again
+  M->>F: GET /api/family/me
+  F-->>M: approved + signed media link
+  P->>M: press play
+  Note over M: media player sends no cookies
+  M->>F: GET /api/stream/link/Mama/tape (bytes=0-1)
+  F->>K: approval still valid?
+  F->>G: app-only ranged download
+  G-->>F: 206
+  F-->>M: 206 audio/mpeg, then further ranges
+</pre>
+        <ul class="notes">
+          <li>Access protects only <span class="mono">/family</span> and <span class="mono">/api/family</span>; <span class="mono">/api/stream</span> relies on the signed link.</li>
+          <li>Remove access flips the KV status, so the next range request gets 403.</li>
+        </ul>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Controls at each boundary</h2>
+      <p>Each layer checks independently, so a request that slips past one still meets the next.</p>
+    </div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Layer</th><th>Control</th><th>What it stops</th></tr></thead>
+        <tbody>
+          <tr><td>Edge</td><td>WAF managed challenge on pages; <code>/api/</code> and <code>/cdn-cgi/</code> excluded</td><td>Bots hitting the sign-in and request pages</td></tr>
+          <tr><td>Identity</td><td>Access OTP (family), Entra ID with PKCE (Dada, Mama)</td><td>Anonymous visitors</td></tr>
+          <tr><td>Authorisation</td><td>KV approval list; owner check on <code>/api/admin/*</code></td><td>Verified emails Dada hasn't approved</td></tr>
+          <tr><td>Token checks</td><td>Access JWT and Entra ID token verified server-side (signature, audience, issuer, expiry)</td><td>Forged or replayed tokens, requests via <code>pages.dev</code></td></tr>
+          <tr><td>Media</td><td>HMAC link, 6 h expiry, re-checked per range; allow-list of 111 files</td><td>Link sharing after removal, path traversal</td></tr>
+          <tr><td>Data source</td><td>Graph <code>Sites.Selected</code> read on one site; secret in Cloudflare encrypted store</td><td>Access to anything else in the tenant</td></tr>
+          <tr><td>Browser</td><td>CSP <code>default-src 'none'</code>, no third-party scripts except Turnstile, <code>noindex</code>, no-referrer</td><td>Injection, leakage, search indexing</td></tr>
+          <tr><td>Abuse</td><td>Turnstile on the request form, verified server-side</td><td>Scripted access requests</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>Proxy secret expires about September 2027. Run 🩺 Check streaming in the control room; <span class="mono">AADSTS7000222</span> means it has expired.</footer>
+</div>
+
+<script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";mermaid.initialize({startOnLoad:true,theme:matchMedia("(prefers-color-scheme: dark)").matches?"dark":"default"});</script>
+</body>
+</html>

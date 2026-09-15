@@ -1,0 +1,25 @@
+# Cloudflare Pages project for mem.ss3.dev. Deploy from this folder:  npx wrangler pages deploy
+name = "papas-memories"
+pages_build_output_dir = "website"
+compatibility_date = "2025-09-01"
+
+[vars]
+OWNER_EMAIL = "s.subiah@septagon.com.au"
+SPA_CLIENT_ID = "e14e65e9-38ff-47d0-8692-86c6cca7c6b2"
+# Friendly names in the sign-in log (everyone else shows as their email)
+VISITOR_NAMES = "s.subiah@septagon.com.au=Dada,smitha.s@septagon.com.au=Mama"
+TENANT_ID = "28f3df7e-b260-48f9-9c0b-6e5bc1c9b7b4"
+SITE_ID = "septagonconsulting.sharepoint.com,f54ba397-883c-40af-951a-b830f7b34ab6,a5754d2a-e568-4d82-8e46-38fdcd16af5e"
+# Fill these in (see SETUP-FAMILY-ACCESS.md):
+TEAM_DOMAIN = "septagon-security.cloudflareaccess.com"
+FAMILY_AUD = "33e0ce019b94cbccd95ae4004fed3d89887ee625c84a45068cc7470813e1a0c6"
+ADMIN_AUD = "" # optional: only if you add a "Memories – Admin" Access app
+GRAPH_CLIENT_ID = "dbc728a8-0a6f-4bd8-b42d-bc173109743d"
+# Optional: a webhook that gets pinged when someone asks for access (ntfy, Teams, n8n...)
+# NOTIFY_WEBHOOK = "https://..."
+# Human check on the family request form: npx wrangler pages secret put TURNSTILE_SECRET --project-name papas-memories
+# Secret (never in this file):  npx wrangler pages secret put GRAPH_CLIENT_SECRET --project-name papas-memories
+
+[[kv_namespaces]]
+binding = "FAMILY"
+id = "49667b29372042fcacf297627dcec2e2"

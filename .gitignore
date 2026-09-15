@@ -1,0 +1,25 @@
+# --- Media and originals (kept in OneDrive / SharePoint, never in git) ---
+Audio/
+Video/
+Mama/
+*.zip
+*.wav
+*.mp3
+*.mp4
+*.m4a
+
+# --- Secrets and local state ---
+.dev.vars
+.env
+.env.*
+*.pem
+*.key
+.wrangler/
+node_modules/
+
+# --- OS / editor noise ---
+Thumbs.db
+desktop.ini
+.DS_Store
+*.tmp
+~$*

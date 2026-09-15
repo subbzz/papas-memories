@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ff5d8f">
+<title>Papa's Memories</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/gochi-hand-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fredoka-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="doodles" aria-hidden="true">
+  <span class="d d1">⭐</span><span class="d d2">🎈</span><span class="d d3">☁️</span>
+  <span class="d d4">🌈</span><span class="d d5">✨</span><span class="d d6">🦋</span>
+  <span class="d d7">🌼</span><span class="d d8">🍭</span>
+</div>
+
+<header class="topbar" id="topbar" hidden>
+  <a class="brand" href="#/">
+    <span class="brand-jar" aria-hidden="true">🫙</span>
+    <span class="brand-text">Papa's Memories</span>
+  </a>
+  <nav class="topnav">
+    <button class="btn btn-sun" id="shuffleBtn" type="button" title="Play a random memory (R)">🎲 <span>Surprise me!</span></button>
+    <a class="btn btn-ghost" href="/admin/" id="adminLink" hidden title="Family approvals">🛂 <span class="hide-sm">Approvals</span></a>
+    <a class="btn btn-ghost" href="#/favourites" title="Your favourites">💖 <span id="favCount">0</span></a>
+    <button class="btn btn-ghost" id="signOutBtn" type="button" title="Sign out">👋 <span class="hide-sm">Sign out</span></button>
+  </nav>
+</header>
+
+<main id="app" tabindex="-1">
+  <section class="gate" id="gate">
+    <div class="gate-card">
+      <div class="gate-box" aria-hidden="true">
+        <div class="lid"></div><div class="box">🎀</div>
+      </div>
+      <h1 class="hand">Papa's Memories</h1>
+      <p class="gate-sub">A treasure box of little voices, birthday cakes, zoo days and giggles.</p>
+      
+      <p class="gate-note">Checking your sign-in…</p>
+      <p class="gate-status" id="gateStatus" role="status"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" id="foot" hidden>
+  <p>Made with love 💛 by Dada · <span id="footCount"></span> · Tip: use ← → to flip through memories</p>
+</footer>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/config.js"></script>
+<script src="/memories.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
