@@ -67,7 +67,7 @@
     try {
       const { items } = await api("/api/admin/requests");
       const pending = items.filter(i => i.status === "pending");
-      document.title = `${pending.length ? `(${pending.length}) ` : ""}Approvals · Papa's Memories`;
+      document.title = `${pending.length ? `(${pending.length}) ` : ""}Approvals · Papa & Mama Memories`;
       list.innerHTML = items.length
         ? `<h2 class="section-title">⏳ Waiting <small>${pending.length}</small></h2>${pending.map(row).join("") || `<p class="empty">Nobody waiting. 🎉</p>`}
            <h2 class="section-title">📒 Everyone else</h2>${items.filter(i => i.status !== "pending").map(row).join("") || `<p class="empty">No one yet.</p>`}`

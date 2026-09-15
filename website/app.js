@@ -223,7 +223,7 @@
     const wd = new Date(Date.UTC(y, m - 1, day)).toLocaleDateString("en-AU", { weekday: "long", timeZone: "UTC" });
     return `${wd} ${day} ${MONTHS[m - 1]} ${y}, ${hh}:${String(mm).padStart(2, "0")} ${ap}`;
   }
-  function setTitle(t) { document.title = !t ? "Papa's Memories" : /Memories$/.test(t) ? t : `${t} · Papa's Memories`; }
+  function setTitle(t) { document.title = !t ? "Papa & Mama Memories" : /Memories$/.test(t) ? t : `${t} · Papa & Mama Memories`; }
 
   /* ---------- views ---------- */
   function jarHtml(emojis, count, word = "memories") {
@@ -587,7 +587,7 @@
   async function familySignOut() {
     // Same-origin logout clears this site's Access cookie and revokes the Access session (all apps).
     try { await fetch("/cdn-cgi/access/logout", { credentials: "same-origin", cache: "no-store" }); } catch { /* still leave */ }
-    location.replace("/bye/?from=family");
+    location.replace("/bye/family/");
   }
   document.addEventListener("click", e => { if (e.target.closest('[data-act="signout"]')) FAMILY ? familySignOut() : $("#signOutBtn").click(); });
 
@@ -664,7 +664,7 @@
   (async () => {
     const status = $("#gateStatus");
     if (FAMILY) { await familyBoot(); return; }
-    if (sessionStorage.getItem("pm:bye")) { sessionStorage.removeItem("pm:bye"); location.replace("/bye/?from=ms"); return; }
+    if (sessionStorage.getItem("pm:bye")) { sessionStorage.removeItem("pm:bye"); location.replace("/bye/"); return; }
     if (DEMO) { showApp(); return; }
     try {
       await initAuth();
