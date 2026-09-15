@@ -24,6 +24,8 @@
   Cache-Control: no-cache
 /app.js
   Cache-Control: no-cache
+/music.js
+  Cache-Control: no-cache
 /admin.js
   Cache-Control: no-cache
 /config.js

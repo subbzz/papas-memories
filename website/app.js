@@ -527,6 +527,8 @@
     else if (kind === "favourites") viewFavourites();
     else if (WORLDS[kind]) viewWorld(kind);
     else viewLanding();
+    // Music box plays on the sign-in and landing screens only; it fades out once a Papa/Mama box (or any clip) opens.
+    if (kind === "m" || kind === "c" || kind === "favourites" || WORLDS[kind]) window.PM_MUSIC?.stop(); else window.PM_MUSIC?.play();
     scrollTo(0, 0);
     app.focus({ preventScroll: true });
   }
@@ -663,6 +665,7 @@
 
   (async () => {
     const status = $("#gateStatus");
+    window.PM_MUSIC?.play(); // sign-in screen
     if (FAMILY) { await familyBoot(); return; }
     if (sessionStorage.getItem("pm:bye")) { sessionStorage.removeItem("pm:bye"); location.replace("/bye/"); return; }
     if (DEMO) { showApp(); return; }
