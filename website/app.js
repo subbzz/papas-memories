@@ -583,10 +583,18 @@
     route();
   }
 
+  /* ---------- sign-out: always end on our own "see you soon" page ---------- */
+  async function familySignOut() {
+    // Same-origin logout clears this site's Access cookie and revokes the Access session (all apps).
+    try { await fetch("/cdn-cgi/access/logout", { credentials: "same-origin", cache: "no-store" }); } catch { /* still leave */ }
+    location.replace("/bye/?from=family");
+  }
+  document.addEventListener("click", e => { if (e.target.closest('[data-act="signout"]')) FAMILY ? familySignOut() : $("#signOutBtn").click(); });
+
   /* ---------- boot ---------- */
   async function familyBoot() {
     const card = $(".gate-card");
-    $("#signOutBtn").addEventListener("click", () => { location.href = "/cdn-cgi/access/logout"; });
+    $("#signOutBtn").addEventListener("click", familySignOut);
     let me;
     try {
       const r = await fetch("/api/family/me", { cache: "no-store", credentials: "same-origin" });
@@ -598,10 +606,10 @@
       const tries = +(sessionStorage.getItem("pm:reauth") || 0);
       if (tries < 2) { sessionStorage.setItem("pm:reauth", tries + 1); location.reload(); return; }
       card.innerHTML = `<h1 class="hand">Hmm… 🤔</h1><p class="gate-sub">We couldn't check your sign-in. Please try again later.</p>
-        <a class="btn btn-pink" href="/cdn-cgi/access/logout">Sign in again</a>`;
+        <button class="btn btn-pink" type="button" data-act="signout">Sign in again</button>`;
       return;
     }
-    const who = `<p class="gate-note">Signed in as <b>${esc(me.email)}</b> · <a href="/cdn-cgi/access/logout">not you?</a></p>`;
+    const who = `<p class="gate-note">Signed in as <b>${esc(me.email)}</b> · <button class="linkish" type="button" data-act="signout">not you?</button></p>`;
     if (me.status === "approved") { showApp(); setTimeout(() => confetti(70), 400); return; }
     if (me.status === "pending") {
       card.innerHTML = `<div class="big-emoji" aria-hidden="true">💌</div><h1 class="hand">Request sent!</h1>
@@ -656,6 +664,7 @@
   (async () => {
     const status = $("#gateStatus");
     if (FAMILY) { await familyBoot(); return; }
+    if (sessionStorage.getItem("pm:bye")) { sessionStorage.removeItem("pm:bye"); location.replace("/bye/?from=ms"); return; }
     if (DEMO) { showApp(); return; }
     try {
       await initAuth();
@@ -666,7 +675,11 @@
       status.textContent = "Off to Microsoft to check it's you… 🔐";
       msal.loginRedirect({ scopes: CFG.scopes, prompt: "select_account" }).catch(e => status.textContent = e.message);
     });
-    $("#signOutBtn").addEventListener("click", () => msal.logoutRedirect({ account }));
+    $("#signOutBtn").addEventListener("click", () => {
+      // Full Microsoft sign-out (safe on shared computers), then back here and on to the "see you soon" page.
+      sessionStorage.setItem("pm:bye", "1");
+      msal.logoutRedirect({ account, postLogoutRedirectUri: location.origin + "/" });
+    });
     if (account) {
       if (account.tenantId && account.tenantId !== CFG.tenantId) { status.textContent = "Please use your Septagon account."; return; }
       if (isOwner()) $("#adminLink").hidden = false;

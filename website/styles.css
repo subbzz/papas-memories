@@ -280,3 +280,24 @@ main:focus,main:focus-visible{outline:none}
 .landing-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:34px}
 .hero.world-mama .jar{background-color:#fff0f6}
 @media (prefers-reduced-motion:reduce){.world-emo,.world-peek span{animation:none}}
+
+/* ---------- sign-in doors + bye page ---------- */
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 4px}
+@media (max-width:460px){.doors{grid-template-columns:1fr}}
+.door{display:flex;flex-direction:column;align-items:center;gap:2px;padding:16px 12px 14px;border:3px solid var(--ink);border-radius:22px;
+  box-shadow:5px 5px 0 var(--ink);text-decoration:none;color:var(--ink);font:inherit;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
+.door:hover{transform:translateY(-3px) rotate(-1.5deg);box-shadow:7px 8px 0 var(--ink)}
+.door:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.door-ms{background:var(--pink);color:#fff}
+.door-family{background:var(--sun)}
+.door b{font-size:1.15rem}
+.door small{font-size:.9rem;opacity:.9}
+.door-emo{font-size:2.4rem;line-height:1.1;display:inline-block;animation:bob 2.6s ease-in-out infinite}
+.linkish{background:none;border:0;padding:0;font:inherit;color:var(--pink);text-decoration:underline;cursor:pointer}
+.bye-wave{font-size:5rem;line-height:1;display:inline-block;transform-origin:70% 80%;animation:wave 1.8s ease-in-out infinite}
+@keyframes wave{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(18deg)}20%,40%{transform:rotate(-10deg)}}
+.bye-lock{display:flex;justify-content:center;gap:10px;font-size:2rem;margin:-4px 0 10px}
+.bye-lock span{display:inline-block;animation:bob 3s ease-in-out infinite}
+.bye-lock span:nth-child(2){animation-delay:-1s}.bye-lock span:nth-child(3){animation-delay:-2s}
+.gate-sub.small{font-size:1rem;color:var(--ink-soft)}
+@media (prefers-reduced-motion:reduce){.door-emo,.bye-wave,.bye-lock span{animation:none}}
