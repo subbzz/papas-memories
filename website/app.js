@@ -18,6 +18,18 @@
   const app = $("#app");
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const tilt = i => ((i * 37) % 9 - 4) * 0.8; // deterministic playful rotation
+  /* ---------- the two treasure boxes (worlds) ---------- */
+  const WORLDS = {
+    papa: { id: "papa", emoji: "👨‍👧", name: "Papa's Memories", color: "#ffd166", jar: ["🎂", "🐣", "🦁", "🎒", "🎵", "🏠", "📼", "🎙️", "🎈", "⭐", "🧸", "🎠"],
+      blurb: "Her tiny voice, birthday cakes, zoo days, dance class and giggles, caught on Papa's camera and tape.",
+      cats: DATA.cats.filter(c => c.id !== "mama").map(c => c.id) },
+    mama: { id: "mama", emoji: "👩‍👧", name: "Mama's Memories", color: "#ffafcc", jar: ["💐", "📻", "🌸", "☕", "💌", "🎀", "🌷", "📼", "🦋", "💖", "🌙", "🧁"],
+      blurb: "Mama's own childhood tapes, snipped into bite-size stories. Grab a cuppa and listen.",
+      cats: ["mama"] }
+  };
+  const WORLD_OF = Object.fromEntries(Object.values(WORLDS).flatMap(w => w.cats.map(id => [id, w])));
+  const worldItems = w => ITEMS.filter(it => w.cats.includes(it.cat));
+  const catHref = id => WORLD_OF[id].cats.length === 1 ? `#/${WORLD_OF[id].id}` : `#/c/${id}`;
   const TAPES = ["rgba(255,201,60,.8)", "rgba(255,93,143,.6)", "rgba(76,201,240,.6)", "rgba(128,237,153,.7)", "rgba(179,146,240,.6)"];
 
   /* ---------- local prefs (per browser only) ---------- */
@@ -211,67 +223,109 @@
     const wd = new Date(Date.UTC(y, m - 1, day)).toLocaleDateString("en-AU", { weekday: "long", timeZone: "UTC" });
     return `${wd} ${day} ${MONTHS[m - 1]} ${y}, ${hh}:${String(mm).padStart(2, "0")} ${ap}`;
   }
-  function setTitle(t) { document.title = t ? `${t} · Papa's Memories` : "Papa's Memories"; }
+  function setTitle(t) { document.title = !t ? "Papa's Memories" : /Memories$/.test(t) ? t : `${t} · Papa's Memories`; }
 
   /* ---------- views ---------- */
-  function viewHome() {
+  function jarHtml(emojis, count, word = "memories") {
+    const fill = Array.from({ length: 48 }, (_, i) => `<span data-d="${(i % 7) * 0.3}">${emojis[i % emojis.length]}</span>`).join("");
+    return `<div class="jar" aria-label="${count} ${word} in the jar"><div class="label"><b>${count}</b>${word}</div><div class="fill">${fill}</div></div>`;
+  }
+  function bobJar() { app.querySelectorAll(".jar .fill span").forEach(s => s.style.animationDelay = `-${s.dataset.d}s`); }
+
+  function viewLanding() {
     setTitle("");
-    const jarEmojis = ["🎂", "🐣", "🦁", "🎒", "🎵", "🏠", "📼", "🎙️", "🎈", "💖", "⭐", "🧸"];
-    const fill = Array.from({ length: 48 }, (_, i) => `<span data-d="${(i % 7) * 0.3}">${jarEmojis[i % jarEmojis.length]}</span>`).join("");
+    const card = (w, i) => {
+      const list = worldItems(w);
+      const audio = list.filter(x => x.kind === "audio").length, video = list.length - audio;
+      const bits = [audio && `🎧 ${audio} tapes`, video && `🎬 ${video} videos`].filter(Boolean).join(" · ");
+      const peek = w.jar.slice(0, 6).map((e, k) => `<span data-d="${k * 0.35}">${e}</span>`).join("");
+      return `<a class="world-card" href="#/${w.id}" data-c="${w.color}" data-r="${i ? 1.5 : -1.5}">
+        <span class="world-ribbon">${i ? "Mama's side" : "Papa's side"}</span>
+        <span class="world-emo" aria-hidden="true">${w.emoji}</span>
+        <h2>${esc(w.name)}</h2>
+        <p>${esc(w.blurb)}</p>
+        <span class="world-peek" aria-hidden="true">${peek}</span>
+        <span class="world-foot"><span class="count">${bits}</span><span class="btn btn-pink">Open ${i ? "Mama's" : "Papa's"} box →</span></span>
+      </a>`;
+    };
     app.innerHTML = `
-      <section class="hero">
+      <section class="landing">
+        <h1 class="landing-title">Two treasure boxes, <span class="pop">one</span> happy family.</h1>
+        <p class="landing-sub">Whose memories shall we open today?</p>
+        <div class="worlds">${card(WORLDS.papa, 0)}${card(WORLDS.mama, 1)}</div>
+        <div class="landing-actions"><button class="btn btn-big btn-sun" type="button" data-act="shuffle">🎲 Surprise me from anywhere!</button>
+          <a class="btn btn-big btn-ghost" href="#/favourites">💖 My favourites</a></div>
+      </section>`;
+    applyVars();
+    app.querySelectorAll(".world-peek span").forEach(s => s.style.animationDelay = `-${s.dataset.d}s`);
+  }
+
+  function viewWorld(wid) {
+    const w = WORLDS[wid]; if (!w) return viewLanding();
+    const list = worldItems(w);
+    const cats = DATA.cats.filter(c => w.cats.includes(c.id));
+    const single = cats.length === 1;
+    setTitle(w.name);
+    const headline = wid === "mama"
+      ? `Once upon a time, <span class="pop">Mama</span> was a little girl too.`
+      : `Once upon a time, a <span class="pop">little girl</span> made <span class="pop">big</span> memories.`;
+    app.innerHTML = `
+      <div class="crumbs"><a class="chip" href="#/">🏠 Home</a><span class="chip" data-c="${w.color}">${w.emoji} ${esc(w.name)}</span></div>
+      <section class="hero world-${wid}">
         <div>
-          <h1>Once upon a time, a <span class="pop">little girl</span> made <span class="pop">big</span> memories.</h1>
-          <p>Her tiny voice, her birthday cakes, her zoo days and her giggles. Every clip has its own page. Pick one, or let the jar choose!</p>
+          <h1>${headline}</h1>
+          <p>${esc(w.blurb)} Every clip has its own page. Pick one, or let the jar choose!</p>
           <div class="hero-actions">
             <button class="btn btn-big btn-pink" type="button" data-act="shuffle">🎲 Surprise me!</button>
-            <label class="search"><span aria-hidden="true">🔎</span><input id="q" type="search" placeholder="Find a memory… (cake, zoo, song)" aria-label="Search memories"></label>
+            ${single ? `<button class="btn btn-big btn-sun" type="button" data-act="play-cat" data-cat="${cats[0].id}">▶ Play them all</button>` : ""}
+            <label class="search"><span aria-hidden="true">🔎</span><input id="q" type="search" placeholder="${wid === "mama" ? "Find a tape…" : "Find a memory… (cake, zoo, song)"}" aria-label="Search ${esc(w.name)}"></label>
           </div>
         </div>
-        <div class="jar" aria-label="${ITEMS.length} memories in the jar">
-          <div class="label"><b>${ITEMS.length}</b>memories</div>
-          <div class="fill">${fill}</div>
-        </div>
+        ${jarHtml(w.jar, list.length, single ? "tapes" : "memories")}
       </section>
-      <h2 class="section-title">📦 Pick a memory box</h2>
-      <div class="stickers">${DATA.cats.map((c, i) => `
+      ${single ? "" : `<h2 class="section-title">📦 Pick a memory box</h2>
+      <div class="stickers">${cats.map((c, i) => `
         <a class="sticker" href="#/c/${c.id}" data-c="${c.color}" data-r="${tilt(i + 3)}">
           <span class="emo">${c.emoji}</span><h3>${esc(c.name)}</h3><p>${esc(c.blurb)}</p>
-          <span class="count">${c.count} ${["tapes", "mama"].includes(c.id) ? "tapes" : "clips"}</span></a>`).join("")}
-      </div>
+          <span class="count">${c.count} ${c.id === "tapes" ? "tapes" : "clips"}</span></a>`).join("")}
+      </div>`}
       <div id="results"></div>
-      <div id="walls">${loadingHtml("Dusting off the photo albums…")}</div>`;
-    applyVars();
-    $(".jar .fill").querySelectorAll("span").forEach(s => s.style.animationDelay = `-${s.dataset.d}s`);
+      <div id="walls">${loadingHtml(wid === "mama" ? "Finding Mama's cassettes…" : "Dusting off the photo albums…")}</div>`;
+    applyVars(); bobJar();
     const q = $("#q");
-    q.addEventListener("input", () => renderSearch(q.value));
+    q.addEventListener("input", () => renderSearch(q.value, list));
     loadMedia().then(() => {
       const walls = $("#walls"); if (!walls) return;
-      walls.innerHTML = DATA.cats.map(c => {
-        const list = ITEMS.filter(it => it.cat === c.id);
-        return `<h2 class="section-title"><span>${c.emoji}</span> ${esc(c.name)} <small>${list.length}</small>
-          <a class="more btn btn-ghost" href="#/c/${c.id}">Open box →</a></h2>
-          <div class="wall">${list.slice(0, 5).map((it, i) => polaroid(it, it.idx)).join("")}</div>`;
-      }).join("");
+      walls.innerHTML = single
+        ? `<h2 class="section-title"><span>${cats[0].emoji}</span> ${esc(cats[0].name)} <small>${list.length}</small></h2>
+           <div class="wall">${list.map(it => polaroid(it, it.idx)).join("")}</div>`
+        : cats.map(c => {
+          const l = ITEMS.filter(it => it.cat === c.id);
+          return `<h2 class="section-title"><span>${c.emoji}</span> ${esc(c.name)} <small>${l.length}</small>
+            <a class="more btn btn-ghost" href="#/c/${c.id}">Open box →</a></h2>
+            <div class="wall">${l.slice(0, 5).map(it => polaroid(it, it.idx)).join("")}</div>`;
+        }).join("");
       applyVars(walls);
-    }).catch(e => { const w = $("#walls"); if (w) w.innerHTML = errorHtml(e); });
+    }).catch(e => { const w2 = $("#walls"); if (w2) w2.innerHTML = errorHtml(e); });
   }
-  function renderSearch(text) {
+  function renderSearch(text, pool = ITEMS) {
     const box = $("#results"); if (!box) return;
     const t = text.trim().toLowerCase();
     if (!t) { box.innerHTML = ""; return; }
-    const hits = ITEMS.filter(it => (it.title + " " + it.caption + " " + CATS[it.cat].name + " " + (it.when || "") + " " + sharedText(it)).toLowerCase().includes(t));
+    const hits = pool.filter(it => (it.title + " " + it.caption + " " + CATS[it.cat].name + " " + (it.when || "") + " " + sharedText(it)).toLowerCase().includes(t));
     box.innerHTML = `<h2 class="section-title">🔎 “${esc(text)}” <small>${hits.length} found</small></h2>` +
       (hits.length ? `<div class="wall">${hits.map(it => polaroid(it, it.idx)).join("")}</div>` : `<p class="empty">No memories match that… yet! 🙈</p>`);
     applyVars(box);
   }
 
   function viewCategory(id) {
-    const c = CATS[id]; if (!c) return viewHome();
+    const c = CATS[id]; if (!c) return viewLanding();
+    const w = WORLD_OF[id];
+    if (w.cats.length === 1) return viewWorld(w.id);
     setTitle(c.name);
     const list = ITEMS.filter(it => it.cat === id);
     app.innerHTML = `
-      <div class="crumbs"><a class="chip" href="#/">🏠 All memories</a></div>
+      <div class="crumbs"><a class="chip" href="#/">🏠 Home</a><a class="chip" href="#/${w.id}" data-c="${w.color}">${w.emoji} ${esc(w.name)}</a></div>
       <h1 class="section-title flush"><span class="big">${c.emoji}</span> ${esc(c.name)}</h1>
       <p>${esc(c.blurb)} <b>${list.length}</b> ${["tapes", "mama"].includes(id) ? "tapes" : "clips"} inside.</p>
       <div class="tools"><button class="btn btn-sun" type="button" data-act="play-cat" data-cat="${id}">▶ Play this box from the start</button></div>
@@ -288,7 +342,7 @@
     setTitle("Favourites");
     const list = ITEMS.filter(it => favs.has(it.slug));
     app.innerHTML = `
-      <div class="crumbs"><a class="chip" href="#/">🏠 All memories</a></div>
+      <div class="crumbs"><a class="chip" href="#/">🏠 Home</a></div>
       <h1 class="section-title flush">💖 Favourites</h1>
       <p>Tap the heart on any memory to keep it here (saved in this browser only).</p>
       <div id="wall">${list.length ? loadingHtml("Fetching your favourites…") : `<p class="empty">No favourites yet. Go find one! 🕵️‍♀️</p>`}</div>`;
@@ -306,8 +360,8 @@
   }
 
   async function viewMemory(slug) {
-    const it = BY_SLUG[slug]; if (!it) return viewHome();
-    const c = CATS[it.cat];
+    const it = BY_SLUG[slug]; if (!it) return viewLanding();
+    const c = CATS[it.cat], w = WORLD_OF[it.cat];
     const { prev, next, pos, total } = neighbours(it);
     setTitle(it.title);
     const isFav = favs.has(it.slug);
@@ -322,8 +376,9 @@
       : `<div class="tv"><div class="antenna"></div><div class="screen" id="mediaSlot">${loadingHtml("Warming up the telly…")}</div></div>`;
     app.innerHTML = `
       <div class="crumbs">
-        <a class="chip" href="#/">🏠 All memories</a>
-        <a class="chip" href="#/c/${c.id}" data-c="${c.color}">${c.emoji} ${esc(c.name)}</a>
+        <a class="chip" href="#/">🏠 Home</a>
+        <a class="chip" href="#/${w.id}" data-c="${w.color}">${w.emoji} ${esc(w.name)}</a>
+        ${w.cats.length > 1 ? `<a class="chip" href="${catHref(c.id)}" data-c="${c.color}">${c.emoji} ${esc(c.name)}</a>` : ""}
         <span class="chip">${pos} of ${total}</span>
       </div>
       <div class="memory">
@@ -470,12 +525,21 @@
     if (kind === "m" && arg) viewMemory(decodeURIComponent(arg));
     else if (kind === "c" && arg) viewCategory(arg);
     else if (kind === "favourites") viewFavourites();
-    else viewHome();
+    else if (WORLDS[kind]) viewWorld(kind);
+    else viewLanding();
     scrollTo(0, 0);
     app.focus({ preventScroll: true });
   }
-  function shuffle(catId) {
-    const pool = catId ? ITEMS.filter(i => i.cat === catId) : ITEMS;
+  function currentWorld() {
+    const [kind, arg] = location.hash.replace(/^#\/?/, "").split("/");
+    if (WORLDS[kind]) return WORLDS[kind];
+    if (kind === "c" && CATS[arg]) return WORLD_OF[arg];
+    if (kind === "m" && BY_SLUG[decodeURIComponent(arg || "")]) return WORLD_OF[BY_SLUG[decodeURIComponent(arg)].cat];
+    return null;
+  }
+  function shuffle() {
+    const w = currentWorld();
+    const pool = w ? worldItems(w) : ITEMS;
     const cur = location.hash.split("/")[2];
     let pick; do { pick = pool[(Math.random() * pool.length) | 0]; } while (pool.length > 1 && pick.slug === cur);
     toast(`🎲 ${pick.emoji} ${pick.title}`);
