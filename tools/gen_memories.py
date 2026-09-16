@@ -4,6 +4,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CATS = [
   ("tapes",    "🎙️", "Little Voice Tapes",           "Tiny voice, big personality. Press play and time-travel.", "#ff8fab"),
   ("mama",     "👩‍👧", "Mama's Memory Tapes",          "One long treasured recording, snipped into bite-size tapes. Grab a cuppa and listen.", "#ffc8dd"),
+  ("mamawedding", "💍", "Mama's Wedding Day", "Dada and Mama's big day on three old discs: family, rituals, the feast and the reception.", "#ffd6a5"),
+  ("mamaceremony", "🌺", "Mama's Coming-of-Age Ceremony", "Silk, jasmine, blessings and a big family feast, from two old VHS tapes.", "#caffbf"),
   ("birthday", "🎂", "Cake, Candles & Party Hats",   "Wishes, presents, games and a lot of cake.",             "#ffb347"),
   ("easter",   "🐣", "Egg Hunts & Easter Shows",     "Chocolate eggs, face paint and carousel rides.",         "#b5e48c"),
   ("zoo",      "🦁", "Zoo Days & Big Adventures",    "Climbing, swinging, sliding, riding. Go, go, go!",       "#8ecae6"),
@@ -153,18 +155,22 @@ for line in open(os.path.join(HERE, "clips.txt"), encoding="utf-8"):
         items.append(dict(kind="audio", folder="Audio", file=fname, cat="tapes", emoji=emo, title=title, caption=cap, date=dt))
 
 items.extend(EXTRA)
-assert len(items) == 111, len(items)
+# Mama's wedding and ceremony clips (cut from the original discs; titles/captions in mama_video_clips.json)
+for it in json.load(open(os.path.join(HERE, "mama_video_clips.json"), encoding="utf-8")):
+    items.append(dict(it, date=None))
+assert len(items) == 191, len(items)
 # No upload/backup dates: only dates embedded in the original file names are shown (see V/A tables).
 catorder = [c[0] for c in CATS]
 def sortkey(it):
     d = it["date"] or (None,None,None)
-    return (catorder.index(it["cat"]), it["title"].lower())
+    return (catorder.index(it["cat"]), it.get("order", 0), it["title"].lower())
 items.sort(key=sortkey)
 seen=set()
 for it in items:
-    s = slugify(it["title"]); b=s; i=2
+    s = slugify(it["file"][:-4]) if it["cat"] in ("mamawedding", "mamaceremony") else slugify(it["title"]); b=s; i=2
     while s in seen: s=f"{b}-{i}"; i+=1
     seen.add(s); it["slug"]=s
+    it.pop("order", None)
     d = it.pop("date")
     if d:
         dd,mm,yy = d

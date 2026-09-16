@@ -22,10 +22,10 @@
   const WORLDS = {
     papa: { id: "papa", emoji: "👨‍👧", name: "Papa's Memories", color: "#ffd166", jar: ["🎂", "🐣", "🦁", "🎒", "🎵", "🏠", "📼", "🎙️", "🎈", "⭐", "🧸", "🎠"],
       blurb: "Her tiny voice, birthday cakes, zoo days, dance class and giggles, caught on Papa's camera and tape.",
-      cats: DATA.cats.filter(c => c.id !== "mama").map(c => c.id) },
+      cats: DATA.cats.filter(c => !c.id.startsWith("mama")).map(c => c.id) },
     mama: { id: "mama", emoji: "👩‍👧", name: "Mama's Memories", color: "#ffafcc", jar: ["💐", "📻", "🌸", "☕", "💌", "🎀", "🌷", "📼", "🦋", "💖", "🌙", "🧁"],
-      blurb: "Mama's own childhood tapes, snipped into bite-size stories. Grab a cuppa and listen.",
-      cats: ["mama"] }
+      blurb: "Mama's own childhood tapes, her coming-of-age ceremony and Dada and Mama's wedding day. Grab a cuppa!",
+      cats: DATA.cats.filter(c => c.id.startsWith("mama")).map(c => c.id) }
   };
   const WORLD_OF = Object.fromEntries(Object.values(WORLDS).flatMap(w => w.cats.map(id => [id, w])));
   const worldItems = w => ITEMS.filter(it => w.cats.includes(it.cat));
@@ -308,7 +308,7 @@
       <div class="stickers">${cats.map((c, i) => `
         <a class="sticker" href="#/c/${c.id}" data-c="${c.color}" data-r="${tilt(i + 3)}">
           <span class="emo">${c.emoji}</span><h3>${esc(c.name)}</h3><p>${esc(c.blurb)}</p>
-          <span class="count">${c.count} ${c.id === "tapes" ? "tapes" : "clips"}</span></a>`).join("")}
+          <span class="count">${c.count} ${["tapes", "mama"].includes(c.id) ? "tapes" : "clips"}</span></a>`).join("")}
       </div>`}
       <div id="results"></div>
       <div id="walls">${loadingHtml(wid === "mama" ? "Finding Mama's cassettes…" : "Dusting off the photo albums…")}</div>`;
