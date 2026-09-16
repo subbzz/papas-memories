@@ -1,6 +1,7 @@
 import { json, deny } from "../../_lib/access.js";
 import { verifyMsIdToken } from "../../_lib/msid.js";
 import { mintToken, msAllowed } from "../../_lib/mediatoken.js";
+import { friendlyName } from "../../_lib/visits.js";
 
 // POST with "Authorization: Bearer <Microsoft ID token>": media token for Dada / Mama.
 export async function onRequestPost({ request, env }) {
@@ -10,5 +11,6 @@ export async function onRequestPost({ request, env }) {
   const who = await verifyMsIdToken(auth.replace(/^Bearer\s+/i, ""), env).catch(() => null);
   if (!who) return deny(401);
   if (!msAllowed(env, who.email)) return deny(403);
-  return json({ mediaToken: await mintToken(env, who.email, "ms"), ttl: 6 * 3600 });
+  const name = friendlyName(env, who.email);
+  return json({ mediaToken: await mintToken(env, who.email, "ms"), ttl: 6 * 3600, name: name === who.email ? "" : name });
 }

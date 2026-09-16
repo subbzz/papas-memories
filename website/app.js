@@ -134,10 +134,13 @@
         const j = await r.json();
         if (j.status !== "approved") return null;
         mediaToken = j.mediaToken || null;
+        setWho(j.name);
       } else if (!DEMO && msal && account) {
         const res = await msal.acquireTokenSilent({ scopes: CFG.scopes, account });
         const r = await fetch("/api/ms/token", { method: "POST", headers: { Authorization: "Bearer " + res.idToken } });
-        mediaToken = r.ok ? (await r.json()).mediaToken || null : null;
+        const j = r.ok ? await r.json() : {};
+        mediaToken = j.mediaToken || null;
+        setWho(j.name || (account.name || "").split(" ")[0]);
       }
     } catch { mediaToken = null; }
     tokenAt = Date.now();
@@ -226,6 +229,22 @@
   function setTitle(t) { document.title = !t ? "Papa & Mama Memories" : /Memories$/.test(t) ? t : `${t} · Papa & Mama Memories`; }
 
   /* ---------- views ---------- */
+  /* ---------- personal greeting (names Dada set: VISITOR_NAMES for Microsoft, approval name for family) ---------- */
+  let WHO = "";
+  function greetText() {
+    const h = new Date().getHours();
+    const hi = h < 5 ? "Hello, night owl" : h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : h < 21 ? "Good evening" : "Hello, night owl";
+    return WHO ? `${hi}, ${WHO}! 💛` : `${hi}! 💛`;
+  }
+  function setWho(name) {
+    const n = String(name || "").trim().slice(0, 40);
+    if (!n || n === WHO) return;
+    WHO = n;
+    try { sessionStorage.setItem("pm:who", n); } catch { /* ignore */ }
+    const el = $("#hello"); if (el) el.textContent = greetText();
+    try { if (!sessionStorage.getItem("pm:welcomed")) { sessionStorage.setItem("pm:welcomed", "1"); toast(`💛 Welcome, ${n}!`); } } catch { /* ignore */ }
+  }
+
   function jarHtml(emojis, count, word = "memories") {
     const fill = Array.from({ length: 48 }, (_, i) => `<span data-d="${(i % 7) * 0.3}">${emojis[i % emojis.length]}</span>`).join("");
     return `<div class="jar" aria-label="${count} ${word} in the jar"><div class="label"><b>${count}</b>${word}</div><div class="fill">${fill}</div></div>`;
@@ -250,12 +269,14 @@
     };
     app.innerHTML = `
       <section class="landing">
+        <p class="landing-hello" id="hello"></p>
         <h1 class="landing-title">Two treasure boxes, <span class="pop">one</span> happy family.</h1>
         <p class="landing-sub">Whose memories shall we open today?</p>
         <div class="worlds">${card(WORLDS.papa, 0)}${card(WORLDS.mama, 1)}</div>
         <div class="landing-actions"><button class="btn btn-big btn-sun" type="button" data-act="shuffle">🎲 Surprise me from anywhere!</button>
           <a class="btn btn-big btn-ghost" href="#/favourites">💖 My favourites</a></div>
       </section>`;
+    $("#hello").textContent = greetText();
     applyVars();
     app.querySelectorAll(".world-peek span").forEach(s => s.style.animationDelay = `-${s.dataset.d}s`);
   }
@@ -612,7 +633,7 @@
       return;
     }
     const who = `<p class="gate-note">Signed in as <b>${esc(me.email)}</b> · <button class="linkish" type="button" data-act="signout">not you?</button></p>`;
-    if (me.status === "approved") { showApp(); setTimeout(() => confetti(70), 400); return; }
+    if (me.status === "approved") { setWho(me.name); showApp(); setTimeout(() => confetti(70), 400); return; }
     if (me.status === "pending") {
       card.innerHTML = `<div class="big-emoji" aria-hidden="true">💌</div><h1 class="hand">Request sent!</h1>
         <p class="gate-sub">Dada has your request${me.name ? `, ${esc(me.name)}` : ""}. As soon as he says yes, the memory box will open for you.</p>
@@ -688,6 +709,7 @@
       if (isOwner()) $("#adminLink").hidden = false;
       logSignIn();
       showApp();
+      ensureToken().catch(() => {}); // also brings back Dada's chosen name for the greeting
       setTimeout(() => confetti(70), 400);
     }
   })();
