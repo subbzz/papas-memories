@@ -99,6 +99,7 @@ window.MEMORIES = {
    "emoji": "✅",
    "title": "Correct!",
    "caption": "Correct! (No arguments accepted.)",
+   "added": "2026-09-15",
    "slug": "correct"
   },
   {
@@ -109,6 +110,7 @@ window.MEMORIES = {
    "emoji": "🍼",
    "title": "De De Amma",
    "caption": "“De De Amma!” A little voice, loud and clear.",
+   "added": "2026-09-15",
    "slug": "de-de-amma"
   },
   {
@@ -119,6 +121,7 @@ window.MEMORIES = {
    "emoji": "🎂",
    "title": "Happy Birthday!",
    "caption": "Happy birthday! 🎈 Press play for the birthday wishes.",
+   "added": "2026-09-15",
    "slug": "happy-birthday"
   },
   {
@@ -129,6 +132,7 @@ window.MEMORIES = {
    "emoji": "👦",
    "title": "Karan",
    "caption": "Karan! A tiny voice clip, big smiles.",
+   "added": "2026-09-15",
    "slug": "karan"
   },
   {
@@ -139,6 +143,7 @@ window.MEMORIES = {
    "emoji": "🥭",
    "title": "Mango!",
    "caption": "Mango! The fruit, the word, the legend.",
+   "added": "2026-09-15",
    "slug": "mango"
   },
   {
@@ -149,6 +154,7 @@ window.MEMORIES = {
    "emoji": "💌",
    "title": "Mani & Viji",
    "caption": "Mani and Viji, in one little voice clip.",
+   "added": "2026-09-15",
    "slug": "mani-and-viji"
   },
   {
@@ -159,6 +165,7 @@ window.MEMORIES = {
    "emoji": "💌",
    "title": "Meena & Mohan",
    "caption": "Meena and Mohan, in one little voice clip.",
+   "added": "2026-09-15",
    "slug": "meena-and-mohan"
   },
   {
@@ -169,6 +176,7 @@ window.MEMORIES = {
    "emoji": "🧅",
    "title": "Onion",
    "caption": "Onion. Say it with feeling!",
+   "added": "2026-09-15",
    "slug": "onion"
   },
   {
@@ -179,6 +187,7 @@ window.MEMORIES = {
    "emoji": "👴👵",
    "title": "Thatha & Aachi",
    "caption": "Thatha and Aachi, in one little voice clip. 💛",
+   "added": "2026-09-15",
    "slug": "thatha-and-aachi"
   },
   {
@@ -189,6 +198,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Voice Tape #03",
    "caption": "A mystery tape from the voice archive. Who knows what she'll say? Press play!",
+   "added": "2026-09-15",
    "slug": "voice-tape-03"
   },
   {
@@ -199,6 +209,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Voice Tape #04",
    "caption": "A mystery tape from the voice archive. Who knows what she'll say? Press play!",
+   "added": "2026-09-15",
    "slug": "voice-tape-04"
   },
   {
@@ -209,6 +220,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Voice Tape #05",
    "caption": "A mystery tape from the voice archive. Who knows what she'll say? Press play!",
+   "added": "2026-09-15",
    "slug": "voice-tape-05"
   },
   {
@@ -219,6 +231,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Voice Tape #06",
    "caption": "A mystery tape from the voice archive. Who knows what she'll say? Press play!",
+   "added": "2026-09-15",
    "slug": "voice-tape-06"
   },
   {
@@ -229,6 +242,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Voice Tape #08",
    "caption": "A mystery tape from the voice archive. Who knows what she'll say? Press play!",
+   "added": "2026-09-15",
    "slug": "voice-tape-08"
   },
   {
@@ -239,6 +253,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Voice Tape #13",
    "caption": "A mystery tape from the voice archive. Who knows what she'll say? Press play!",
+   "added": "2026-09-15",
    "slug": "voice-tape-13"
   },
   {
@@ -249,6 +264,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Voice Tape #24",
    "caption": "A mystery tape from the voice archive. Who knows what she'll say? Press play!",
+   "added": "2026-09-15",
    "slug": "voice-tape-24"
   },
   {
@@ -259,6 +275,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Voice Tape #25",
    "caption": "A mystery tape from the voice archive. Who knows what she'll say? Press play!",
+   "added": "2026-09-15",
    "slug": "voice-tape-25"
   },
   {
@@ -269,6 +286,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Voice Tape #26-01",
    "caption": "A mystery tape from the voice archive. Who knows what she'll say? Press play!",
+   "added": "2026-09-15",
    "slug": "voice-tape-26-01"
   },
   {
@@ -279,6 +297,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Voice Tape #28",
    "caption": "A mystery tape from the voice archive. Who knows what she'll say? Press play!",
+   "added": "2026-09-15",
    "slug": "voice-tape-28"
   },
   {
@@ -289,6 +308,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Voice Tape #29",
    "caption": "A mystery tape from the voice archive. Who knows what she'll say? Press play!",
+   "added": "2026-09-15",
    "slug": "voice-tape-29"
   },
   {
@@ -299,6 +319,7 @@ window.MEMORIES = {
    "emoji": "📅",
    "title": "Voice Tape · 21 Feb 2011",
    "caption": "Recorded 21 February 2011.",
+   "added": "2026-09-15",
    "slug": "voice-tape-21-feb-2011",
    "when": "21 February 2011"
   },
@@ -310,6 +331,7 @@ window.MEMORIES = {
    "emoji": "📅",
    "title": "Voice Tape · 25 Feb 2011",
    "caption": "Recorded 25 February 2011.",
+   "added": "2026-09-15",
    "slug": "voice-tape-25-feb-2011",
    "when": "25 February 2011"
   },
@@ -321,6 +343,7 @@ window.MEMORIES = {
    "emoji": "📅",
    "title": "Voice Tape · 28 Feb 2011",
    "caption": "Recorded 28 February 2011.",
+   "added": "2026-09-15",
    "slug": "voice-tape-28-feb-2011",
    "when": "28 February 2011"
   },
@@ -332,6 +355,7 @@ window.MEMORIES = {
    "emoji": "💐",
    "title": "Mama's Tape 1",
    "caption": "Mama's memory tape 1 of 8 (0:47). A recording all of its own.",
+   "added": "2026-09-15",
    "slug": "mama-s-tape-1"
   },
   {
@@ -342,6 +366,7 @@ window.MEMORIES = {
    "emoji": "🌸",
    "title": "Mama's Tape 2",
    "caption": "Mama's memory tape 2 of 8 (2:10). A recording all of its own.",
+   "added": "2026-09-15",
    "slug": "mama-s-tape-2"
   },
   {
@@ -352,6 +377,7 @@ window.MEMORIES = {
    "emoji": "🌷",
    "title": "Mama's Tape 3",
    "caption": "Mama's memory tape 3 of 8 (3:33). The first part of the long recording. It carries on in the next tape.",
+   "added": "2026-09-15",
    "slug": "mama-s-tape-3"
   },
   {
@@ -362,6 +388,7 @@ window.MEMORIES = {
    "emoji": "🌼",
    "title": "Mama's Tape 4",
    "caption": "Mama's memory tape 4 of 8 (2:46). Carries on from the previous tape, and on into the next.",
+   "added": "2026-09-15",
    "slug": "mama-s-tape-4"
   },
   {
@@ -372,6 +399,7 @@ window.MEMORIES = {
    "emoji": "🌻",
    "title": "Mama's Tape 5",
    "caption": "Mama's memory tape 5 of 8 (3:17). Carries on from the previous tape, and on into the next.",
+   "added": "2026-09-15",
    "slug": "mama-s-tape-5"
   },
   {
@@ -382,6 +410,7 @@ window.MEMORIES = {
    "emoji": "🌺",
    "title": "Mama's Tape 6",
    "caption": "Mama's memory tape 6 of 8 (2:32). Carries on from the previous tape, and on into the next.",
+   "added": "2026-09-15",
    "slug": "mama-s-tape-6"
   },
   {
@@ -392,6 +421,7 @@ window.MEMORIES = {
    "emoji": "🪷",
    "title": "Mama's Tape 7",
    "caption": "Mama's memory tape 7 of 8 (3:19). The last part of the long recording.",
+   "added": "2026-09-15",
    "slug": "mama-s-tape-7"
   },
   {
@@ -402,6 +432,7 @@ window.MEMORIES = {
    "emoji": "💮",
    "title": "Mama's Tape 8",
    "caption": "Mama's memory tape 8 of 8 (2:18). A recording all of its own.",
+   "added": "2026-09-15",
    "slug": "mama-s-tape-8"
   },
   {
@@ -412,6 +443,7 @@ window.MEMORIES = {
    "emoji": "🛕",
    "title": "1. Opening Titles",
    "caption": "The video opens with temple and river scenes, then the family at home. (Wedding disc 1, from 0:00 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-01"
   },
   {
@@ -422,6 +454,7 @@ window.MEMORIES = {
    "emoji": "👧",
    "title": "2. Cousins at Home",
    "caption": "Kids and cousins gather at home while the grown-ups get busy. (Wedding disc 1, from 4:43 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-02"
   },
   {
@@ -432,6 +465,7 @@ window.MEMORIES = {
    "emoji": "🪔",
    "title": "3. Lamp and First Blessings",
    "caption": "The brass lamp is lit and the elders give their blessings. (Wedding disc 1, from 7:49 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-03"
   },
   {
@@ -442,6 +476,7 @@ window.MEMORIES = {
    "emoji": "😊",
    "title": "4. Smiles in Close-Up",
    "caption": "Close-ups of happy faces, and a few shy smiles. (Wedding disc 1, from 12:25 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-04"
   },
   {
@@ -452,6 +487,7 @@ window.MEMORIES = {
    "emoji": "🎁",
    "title": "5. Guests with Gift Trays",
    "caption": "The ladies arrive in their silks, carrying trays of gifts. (Wedding disc 1, from 17:04 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-05"
   },
   {
@@ -462,6 +498,7 @@ window.MEMORIES = {
    "emoji": "🍌",
    "title": "6. Offerings on the Banana Leaf",
    "caption": "Fruit, flowers and coconut laid out while the elders look on. (Wedding disc 1, from 20:40 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-06"
   },
   {
@@ -472,6 +509,7 @@ window.MEMORIES = {
    "emoji": "🕯️",
    "title": "7. Lighting the Lamp Together",
    "caption": "The family gathers around the lamp. (Wedding disc 1, from 24:05 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-07"
   },
   {
@@ -482,6 +520,7 @@ window.MEMORIES = {
    "emoji": "🤝",
    "title": "8. Trays Handed Over",
    "caption": "The men of the family pass the decorated trays. (Wedding disc 1, from 28:39 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-08"
   },
   {
@@ -492,6 +531,7 @@ window.MEMORIES = {
    "emoji": "📺",
    "title": "9. Titles and Prayers by the Lamp",
    "caption": "A title card, then prayers by the lamp. (Wedding disc 1, from 33:01 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-09"
   },
   {
@@ -502,6 +542,7 @@ window.MEMORIES = {
    "emoji": "🌼",
    "title": "10. Offerings by the Lamp",
    "caption": "Everything neatly set out on the leaf, ready for the prayers. (Wedding disc 1, from 36:20 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-10"
   },
   {
@@ -512,6 +553,7 @@ window.MEMORIES = {
    "emoji": "📸",
    "title": "11. Family Photo Outside",
    "caption": "Everyone lines up for a photo in front of the house. (Wedding disc 1, from 39:22 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-11"
   },
   {
@@ -522,6 +564,7 @@ window.MEMORIES = {
    "emoji": "💙",
    "title": "12. Title Song and Blue Silk",
    "caption": "A title song, then close-ups in a beautiful blue silk sari. (Wedding disc 1, from 44:13 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-12"
   },
   {
@@ -532,6 +575,7 @@ window.MEMORIES = {
    "emoji": "💃",
    "title": "13. Laughter with the Girls",
    "caption": "Getting ready, with plenty of giggles. (Wedding disc 1, from 48:39 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-13"
   },
   {
@@ -542,6 +586,7 @@ window.MEMORIES = {
    "emoji": "🏡",
    "title": "14. Friends Arrive",
    "caption": "More relatives and friends drop in. (Wedding disc 1, from 52:39 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-14"
   },
   {
@@ -552,6 +597,7 @@ window.MEMORIES = {
    "emoji": "🥣",
    "title": "15. The Pestle Ritual",
    "caption": "The ladies take turns with the big pestle for a traditional ritual. (Wedding disc 1, from 56:05 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-15"
   },
   {
@@ -562,6 +608,7 @@ window.MEMORIES = {
    "emoji": "🎞️",
    "title": "16. Kids and a Video Montage",
    "caption": "Little ones, big smiles and some very 90s video effects. (Wedding disc 1, from 59:09 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-16"
   },
   {
@@ -572,6 +619,7 @@ window.MEMORIES = {
    "emoji": "💑",
    "title": "17. Dada and Mama's Photo Shoot",
    "caption": "The first photo session together: Dada in a suit, Mama in silk. (Wedding disc 1, from 62:45 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-17"
   },
   {
@@ -582,6 +630,7 @@ window.MEMORIES = {
    "emoji": "💍",
    "title": "18. The Wedding Video Begins",
    "caption": "The wedding title cards appear, with Mama's name on screen. (Wedding disc 2, from 0:00 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-18"
   },
   {
@@ -592,6 +641,7 @@ window.MEMORIES = {
    "emoji": "🏠",
    "title": "19. Titles and the Family Home",
    "caption": "Temple titles, then the family home on the big day. (Wedding disc 2, from 4:20 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-19"
   },
   {
@@ -602,6 +652,7 @@ window.MEMORIES = {
    "emoji": "🙏",
    "title": "20. Blessings Before Leaving",
    "caption": "Blessings at home before heading off. (Wedding disc 2, from 7:56 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-20"
   },
   {
@@ -612,6 +663,7 @@ window.MEMORIES = {
    "emoji": "🚗",
    "title": "21. The Decorated Wedding Car",
    "caption": "The flower-decked car waits outside. (Wedding disc 2, from 11:56 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-21"
   },
   {
@@ -622,6 +674,7 @@ window.MEMORIES = {
    "emoji": "🌴",
    "title": "22. Arriving at the Hall",
    "caption": "Arriving at the wedding hall, jasmine and all. (Wedding disc 2, from 14:57 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-22"
   },
   {
@@ -632,6 +685,7 @@ window.MEMORIES = {
    "emoji": "🌸",
    "title": "23. The Welcome Party",
    "caption": "The ladies line up to welcome everyone at the hall. (Wedding disc 2, from 19:34 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-23"
   },
   {
@@ -642,6 +696,7 @@ window.MEMORIES = {
    "emoji": "✨",
    "title": "24. Dada's Title Portraits",
    "caption": "Dada in the classic wedding-video portrait frames. (Wedding disc 2, from 22:58 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-24"
   },
   {
@@ -652,6 +707,7 @@ window.MEMORIES = {
    "emoji": "🧺",
    "title": "25. Guests and Gift Trays",
    "caption": "The hall fills up, and the gift trays look splendid. (Wedding disc 2, from 27:31 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-25"
   },
   {
@@ -662,6 +718,7 @@ window.MEMORIES = {
    "emoji": "💐",
    "title": "26. Garlands at the Entrance",
    "caption": "Dada is welcomed with garlands. (Wedding disc 2, from 31:19 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-26"
   },
   {
@@ -672,6 +729,7 @@ window.MEMORIES = {
    "emoji": "🔥",
    "title": "27. The Rituals Begin",
    "caption": "The ceremony starts on the decorated stage. (Wedding disc 2, from 35:41 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-27"
   },
   {
@@ -682,6 +740,7 @@ window.MEMORIES = {
    "emoji": "📿",
    "title": "28. Prayers with the Priest",
    "caption": "The priest leads the prayers as the family watches. (Wedding disc 2, from 40:12 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-28"
   },
   {
@@ -692,6 +751,7 @@ window.MEMORIES = {
    "emoji": "💒",
    "title": "29. The Couple Takes Their Seats",
    "caption": "Dada and Mama are seated together for the rituals. (Wedding disc 2, from 43:29 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-29"
   },
   {
@@ -702,6 +762,7 @@ window.MEMORIES = {
    "emoji": "👀",
    "title": "30. All Eyes on the Stage",
    "caption": "The ceremony continues in front of a packed hall. (Wedding disc 2, from 47:40 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-30"
   },
   {
@@ -712,6 +773,7 @@ window.MEMORIES = {
    "emoji": "👪",
    "title": "31. Guests Watch On",
    "caption": "Relatives and friends look on as the rituals go on. (Wedding disc 2, from 51:56 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-31"
   },
   {
@@ -722,6 +784,7 @@ window.MEMORIES = {
    "emoji": "🌺",
    "title": "32. Blessings from the Ladies",
    "caption": "The ladies come up one by one to bless the couple. (Wedding disc 2, from 56:53 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-32"
   },
   {
@@ -732,6 +795,7 @@ window.MEMORIES = {
    "emoji": "🤲",
    "title": "33. Rituals with the Elders",
    "caption": "The elders join in on stage. (Wedding disc 2, from 61:26 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-33"
   },
   {
@@ -742,6 +806,7 @@ window.MEMORIES = {
    "emoji": "🌼",
    "title": "34. Garlanded and Blessed",
    "caption": "The newly-weds, garlanded, receive blessings. (Wedding disc 2, from 66:05 · about 2 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-34"
   },
   {
@@ -752,6 +817,7 @@ window.MEMORIES = {
    "emoji": "💛",
    "title": "35. More Blessings",
    "caption": "Blessing after blessing for the newly-weds. (Wedding disc 3, from 0:00 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-35"
   },
   {
@@ -762,6 +828,7 @@ window.MEMORIES = {
    "emoji": "✍️",
    "title": "36. Greetings After the Ceremony",
    "caption": "Greetings and a signing moment after the ceremony. (Wedding disc 3, from 3:28 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-36"
   },
   {
@@ -772,6 +839,7 @@ window.MEMORIES = {
    "emoji": "📷",
    "title": "37. Stage Photos with Family",
    "caption": "The family takes turns for photos on stage. (Wedding disc 3, from 6:53 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-37"
   },
   {
@@ -782,6 +850,7 @@ window.MEMORIES = {
    "emoji": "🥰",
    "title": "38. Relatives in the Hall",
    "caption": "Cheerful relatives and plenty of catching up. (Wedding disc 3, from 10:16 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-38"
   },
   {
@@ -792,6 +861,7 @@ window.MEMORIES = {
    "emoji": "🤗",
    "title": "39. Greeting the Guests",
    "caption": "The couple greets guests on stage. (Wedding disc 3, from 13:28 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-39"
   },
   {
@@ -802,6 +872,7 @@ window.MEMORIES = {
    "emoji": "🪧",
    "title": "40. “S. Subiah weds V. Smitha”",
    "caption": "The big banner, and more family photos. (Wedding disc 3, from 16:42 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-40"
   },
   {
@@ -812,6 +883,7 @@ window.MEMORIES = {
    "emoji": "🍛",
    "title": "41. The Wedding Feast",
    "caption": "The famous feast, served on banana leaves. (Wedding disc 3, from 20:10 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-41"
   },
   {
@@ -822,6 +894,7 @@ window.MEMORIES = {
    "emoji": "🎬",
    "title": "42. The Feast and “Our Wedding”",
    "caption": "More feast, then the “Our Wedding” title cards. (Wedding disc 3, from 23:33 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-42"
   },
   {
@@ -832,6 +905,7 @@ window.MEMORIES = {
    "emoji": "🏛️",
    "title": "43. The Reception Hall",
    "caption": "Flowers, then the reception hall itself. (Wedding disc 3, from 27:43 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-43"
   },
   {
@@ -842,6 +916,7 @@ window.MEMORIES = {
    "emoji": "🎊",
    "title": "44. Reception Photos",
    "caption": "Guests line up for photos with the couple. (Wedding disc 3, from 31:35 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-44"
   },
   {
@@ -852,6 +927,7 @@ window.MEMORIES = {
    "emoji": "🍽️",
    "title": "45. Dinner and Stage Photos",
    "caption": "Guests at dinner, and more photos on stage. (Wedding disc 3, from 36:31 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-45"
   },
   {
@@ -862,6 +938,7 @@ window.MEMORIES = {
    "emoji": "👋",
    "title": "46. Reception Greetings",
    "caption": "Handshakes, hugs and good wishes. (Wedding disc 3, from 41:09 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-46"
   },
   {
@@ -872,6 +949,7 @@ window.MEMORIES = {
    "emoji": "🌃",
    "title": "47. Evening Lights",
    "caption": "Evening lights and the couple on stage. (Wedding disc 3, from 44:16 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-47"
   },
   {
@@ -882,6 +960,7 @@ window.MEMORIES = {
    "emoji": "👨‍👩‍👧",
    "title": "48. Group Photos",
    "caption": "Group photo after group photo. (Wedding disc 3, from 47:28 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-48"
   },
   {
@@ -892,6 +971,7 @@ window.MEMORIES = {
    "emoji": "🧑‍🤝‍🧑",
    "title": "49. More Family Photos",
    "caption": "Every branch of the family gets its photo. (Wedding disc 3, from 51:43 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-49"
   },
   {
@@ -902,6 +982,7 @@ window.MEMORIES = {
    "emoji": "🎲",
    "title": "50. Fun Rituals with the Family",
    "caption": "Everyone crowds round for the playful rituals. (Wedding disc 3, from 55:08 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-50"
   },
   {
@@ -912,6 +993,7 @@ window.MEMORIES = {
    "emoji": "🌊",
    "title": "51. Final Rituals and a Seaside Montage",
    "caption": "The last rituals, then a seaside video montage. (Wedding disc 3, from 58:54 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-51"
   },
   {
@@ -922,6 +1004,7 @@ window.MEMORIES = {
    "emoji": "🎇",
    "title": "52. Closing Titles",
    "caption": "The closing montage: long live the happy couple! (Wedding disc 3, from 63:22 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-wedding-52"
   },
   {
@@ -932,6 +1015,7 @@ window.MEMORIES = {
    "emoji": "🎬",
    "title": "1. Opening Titles",
    "caption": "The old tape begins with its title cards (from Nagercoil). Old VHS tape, so expect a few wobbly lines. (Ceremony tape 1, from 0:00 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-01"
   },
   {
@@ -942,6 +1026,7 @@ window.MEMORIES = {
    "emoji": "👨‍👩‍👧‍👦",
    "title": "2. The Family Gathers",
    "caption": "Family and little ones gather at the house. (Ceremony tape 1, from 3:22 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-02"
   },
   {
@@ -952,6 +1037,7 @@ window.MEMORIES = {
    "emoji": "🧒",
    "title": "3. Kids Everywhere",
    "caption": "Curious kids crowd in to see what's happening. (Ceremony tape 1, from 6:44 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-03"
   },
   {
@@ -962,6 +1048,7 @@ window.MEMORIES = {
    "emoji": "🌹",
    "title": "4. Flowers and First Blessings",
    "caption": "Rose-tinted titles, then the first blessings by the lamp. (Ceremony tape 1, from 10:56 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-04"
   },
   {
@@ -972,6 +1059,7 @@ window.MEMORIES = {
    "emoji": "💁‍♀️",
    "title": "5. Getting Ready with the Ladies",
    "caption": "The ladies help with the jewellery and flowers. (Ceremony tape 1, from 14:43 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-05"
   },
   {
@@ -982,6 +1070,7 @@ window.MEMORIES = {
    "emoji": "🥻",
    "title": "6. Dressing Up in Silk",
    "caption": "Silk saris, jasmine and a lot of fuss (the good kind). (Ceremony tape 1, from 18:01 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-06"
   },
   {
@@ -992,6 +1081,7 @@ window.MEMORIES = {
    "emoji": "🎎",
    "title": "7. Jewellery and the Doll Display",
    "caption": "Final touches, and a peek at the doll display. (Ceremony tape 1, from 21:15 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-07"
   },
   {
@@ -1002,6 +1092,7 @@ window.MEMORIES = {
    "emoji": "💮",
    "title": "8. Flowers in the Hair",
    "caption": "Flowers pinned and jewellery on. (Ceremony tape 1, from 25:37 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-08"
   },
   {
@@ -1012,6 +1103,7 @@ window.MEMORIES = {
    "emoji": "🚙",
    "title": "9. A Photo and the Family Car",
    "caption": "A photo moment, then the family car arrives. (Ceremony tape 1, from 30:16 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-09"
   },
   {
@@ -1022,6 +1114,7 @@ window.MEMORIES = {
    "emoji": "🪑",
    "title": "10. Guests Gather",
    "caption": "Guests arrive and settle in. (Ceremony tape 1, from 33:22 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-10"
   },
   {
@@ -1032,6 +1125,7 @@ window.MEMORIES = {
    "emoji": "👥",
    "title": "11. Guests Take Their Seats",
    "caption": "The chairs fill up. (Ceremony tape 1, from 37:01 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-11"
   },
   {
@@ -1042,6 +1136,7 @@ window.MEMORIES = {
    "emoji": "🪔",
    "title": "12. The Lamp Is Lit",
    "caption": "The brass lamp glows as the ceremony begins. (Ceremony tape 1, from 40:16 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-12"
   },
   {
@@ -1052,6 +1147,7 @@ window.MEMORIES = {
    "emoji": "🌸",
    "title": "13. Garlands and Blessings",
    "caption": "Garlanded in jasmine, with blessings all round. (Ceremony tape 1, from 44:56 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-13"
   },
   {
@@ -1062,6 +1158,7 @@ window.MEMORIES = {
    "emoji": "🙌",
    "title": "14. Blessings from the Elders",
    "caption": "The elders come forward one by one. (Ceremony tape 1, from 49:44 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-14"
   },
   {
@@ -1072,6 +1169,7 @@ window.MEMORIES = {
    "emoji": "🕯️",
    "title": "15. By the Lamp",
    "caption": "The ceremony continues by the lamp. (Ceremony tape 1, from 54:22 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-15"
   },
   {
@@ -1082,6 +1180,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "16. The Second Tape Begins",
    "caption": "A new tape starts and the ceremony carries on. (Ceremony tape 2, from 0:00 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-16"
   },
   {
@@ -1092,6 +1191,7 @@ window.MEMORIES = {
    "emoji": "😊",
    "title": "17. Smiles and Blessings",
    "caption": "Happy faces and more blessings. (Ceremony tape 2, from 4:20 · about 3 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-17"
   },
   {
@@ -1102,6 +1202,7 @@ window.MEMORIES = {
    "emoji": "🍛",
    "title": "18. The Feast Begins",
    "caption": "Everyone sits down to eat. (Ceremony tape 2, from 7:43 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-18"
   },
   {
@@ -1112,6 +1213,7 @@ window.MEMORIES = {
    "emoji": "🍃",
    "title": "19. Feast on Banana Leaves",
    "caption": "A proper feast, served on banana leaves. (Ceremony tape 2, from 11:36 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-19"
   },
   {
@@ -1122,6 +1224,7 @@ window.MEMORIES = {
    "emoji": "💃",
    "title": "20. Dance Time",
    "caption": "A little dancer takes the stage. (Ceremony tape 2, from 15:12 · about 5 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-20"
   },
   {
@@ -1132,6 +1235,7 @@ window.MEMORIES = {
    "emoji": "🎭",
    "title": "21. Little Performers",
    "caption": "More performances from the little ones. (Ceremony tape 2, from 20:07 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-21"
   },
   {
@@ -1142,6 +1246,7 @@ window.MEMORIES = {
    "emoji": "🎶",
    "title": "22. More Performances",
    "caption": "The show goes on. (Ceremony tape 2, from 24:21 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-22"
   },
   {
@@ -1152,6 +1257,7 @@ window.MEMORIES = {
    "emoji": "📸",
    "title": "23. Family Photos Outside",
    "caption": "Family photos outside, elders and all. (Ceremony tape 2, from 28:34 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-23"
   },
   {
@@ -1162,6 +1268,7 @@ window.MEMORIES = {
    "emoji": "✨",
    "title": "24. Video Effects and Outdoors",
    "caption": "Classic video effects, then outdoor scenes. (Ceremony tape 2, from 32:39 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-24"
   },
   {
@@ -1172,6 +1279,7 @@ window.MEMORIES = {
    "emoji": "🧡",
    "title": "25. A Little Dancer at Home",
    "caption": "A tiny dancer in orange shows her moves. (Ceremony tape 2, from 36:10 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-25"
   },
   {
@@ -1182,6 +1290,7 @@ window.MEMORIES = {
    "emoji": "👶",
    "title": "26. Family and Little Ones",
    "caption": "Cuddles with the little ones. (Ceremony tape 2, from 39:58 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-26"
   },
   {
@@ -1192,6 +1301,7 @@ window.MEMORIES = {
    "emoji": "🏠",
    "title": "27. At Home with the Family",
    "caption": "Everyday moments at home, kitchen included. (Ceremony tape 2, from 43:54 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-27"
   },
   {
@@ -1202,6 +1312,7 @@ window.MEMORIES = {
    "emoji": "🎞️",
    "title": "28. The Last Moments on Tape",
    "caption": "The tape's final moments. (Ceremony tape 2, from 47:28 · about 4 min.)",
+   "added": "2026-09-16",
    "slug": "mama-ceremony-28"
   },
   {
@@ -1212,6 +1323,7 @@ window.MEMORIES = {
    "emoji": "🎉",
    "title": "3rd Birthday: Party Game 1",
    "caption": "Let the party games begin!",
+   "added": "2026-09-15",
    "slug": "3rd-birthday-party-game-1"
   },
   {
@@ -1222,6 +1334,7 @@ window.MEMORIES = {
    "emoji": "🎲",
    "title": "3rd Birthday: Party Game 2",
    "caption": "Party game number two. Let the games continue!",
+   "added": "2026-09-15",
    "slug": "3rd-birthday-party-game-2"
   },
   {
@@ -1232,6 +1345,7 @@ window.MEMORIES = {
    "emoji": "🫏",
    "title": "3rd Birthday: Pin the Tail",
    "caption": "Blindfold on… where does that tail go?!",
+   "added": "2026-09-15",
    "slug": "3rd-birthday-pin-the-tail"
   },
   {
@@ -1242,6 +1356,7 @@ window.MEMORIES = {
    "emoji": "🎁",
    "title": "3rd Birthday: Present #1",
    "caption": "What's inside? Present number one!",
+   "added": "2026-09-15",
    "slug": "3rd-birthday-present-1"
   },
   {
@@ -1252,6 +1367,7 @@ window.MEMORIES = {
    "emoji": "🎀",
    "title": "3rd Birthday: Present #2",
    "caption": "Rip! Present number two.",
+   "added": "2026-09-15",
    "slug": "3rd-birthday-present-2"
   },
   {
@@ -1262,6 +1378,7 @@ window.MEMORIES = {
    "emoji": "🍰",
    "title": "3rd Birthday: The Cake",
    "caption": "Candles lit, song sung. It's cake time!",
+   "added": "2026-09-15",
    "slug": "3rd-birthday-the-cake"
   },
   {
@@ -1272,6 +1389,7 @@ window.MEMORIES = {
    "emoji": "🪅",
    "title": "3rd Birthday: The Piñata",
    "caption": "Whack! Whack! 3rd birthday piñata action.",
+   "added": "2026-09-15",
    "slug": "3rd-birthday-the-pi-ata"
   },
   {
@@ -1282,6 +1400,7 @@ window.MEMORIES = {
    "emoji": "🏫",
    "title": "Birthday at School",
    "caption": "Celebrating the birthday with the school crew.",
+   "added": "2026-09-15",
    "slug": "birthday-at-school"
   },
   {
@@ -1292,6 +1411,7 @@ window.MEMORIES = {
    "emoji": "🌅",
    "title": "Birthday Morning (Part 1)",
    "caption": "Wakey wakey, birthday girl! The birthday morning begins.",
+   "added": "2026-09-15",
    "slug": "birthday-morning-part-1"
   },
   {
@@ -1302,6 +1422,7 @@ window.MEMORIES = {
    "emoji": "🎁",
    "title": "Birthday Morning (Part 2)",
    "caption": "The birthday morning continues…",
+   "added": "2026-09-15",
    "slug": "birthday-morning-part-2"
   },
   {
@@ -1312,6 +1433,7 @@ window.MEMORIES = {
    "emoji": "🥳",
    "title": "Birthday Morning (Part 3)",
    "caption": "Birthday morning, the grand finale.",
+   "added": "2026-09-15",
    "slug": "birthday-morning-part-3"
   },
   {
@@ -1322,6 +1444,7 @@ window.MEMORIES = {
    "emoji": "1️⃣",
    "title": "First Birthday Party",
    "caption": "ONE! The very first birthday party.",
+   "added": "2026-09-15",
    "slug": "first-birthday-party"
   },
   {
@@ -1332,6 +1455,7 @@ window.MEMORIES = {
    "emoji": "2️⃣",
    "title": "Second Birthday Party",
    "caption": "TWO! The second birthday party.",
+   "added": "2026-09-15",
    "slug": "second-birthday-party"
   },
   {
@@ -1342,6 +1466,7 @@ window.MEMORIES = {
    "emoji": "🎪",
    "title": "Chatting About the Easter Show",
    "caption": "The full debrief on the Easter Show, straight from the source.",
+   "added": "2026-09-15",
    "slug": "chatting-about-the-easter-show"
   },
   {
@@ -1352,6 +1477,7 @@ window.MEMORIES = {
    "emoji": "🤩",
    "title": "Easter 2012: Egg Hunt Surprise",
    "caption": "An egg hunt… with a surprise!",
+   "added": "2026-09-15",
    "slug": "easter-2012-egg-hunt-surprise",
    "when": "2012"
   },
@@ -1363,6 +1489,7 @@ window.MEMORIES = {
    "emoji": "🐰",
    "title": "Easter 2012: Happy Easter!",
    "caption": "A very important Easter message. Happy Easter!",
+   "added": "2026-09-15",
    "slug": "easter-2012-happy-easter",
    "when": "2012"
   },
@@ -1374,6 +1501,7 @@ window.MEMORIES = {
    "emoji": "🧺",
    "title": "Easter 2012: The Egg Hunt",
    "caption": "Basket ready… the 2012 Easter egg hunt is ON!",
+   "added": "2026-09-15",
    "slug": "easter-2012-the-egg-hunt",
    "when": "2012"
   },
@@ -1385,6 +1513,7 @@ window.MEMORIES = {
    "emoji": "🍫",
    "title": "Easter 2012: Yumm Yumm",
    "caption": "Chocolate verdict: yumm yumm.",
+   "added": "2026-09-15",
    "slug": "easter-2012-yumm-yumm",
    "when": "2012"
   },
@@ -1396,6 +1525,7 @@ window.MEMORIES = {
    "emoji": "🥚",
    "title": "Easter Egg Painting at the Mall",
    "caption": "Brush in hand, egg in the other: Easter egg painting at the mall.",
+   "added": "2026-09-15",
    "slug": "easter-egg-painting-at-the-mall"
   },
   {
@@ -1406,6 +1536,7 @@ window.MEMORIES = {
    "emoji": "🎨",
    "title": "Face Painting at Whitcoulls Easter Fun",
    "caption": "Sit still… almost… the Easter face-painting masterpiece.",
+   "added": "2026-09-15",
    "slug": "face-painting-at-whitcoulls-easter-fun"
   },
   {
@@ -1416,6 +1547,7 @@ window.MEMORIES = {
    "emoji": "🛝",
    "title": "Royal Easter Show 2012: Bouncy Slide",
    "caption": "Weeee! The bouncy slide at the 2012 Royal Easter Show.",
+   "added": "2026-09-15",
    "slug": "royal-easter-show-2012-bouncy-slide",
    "when": "2012"
   },
@@ -1427,6 +1559,7 @@ window.MEMORIES = {
    "emoji": "🎠",
    "title": "Royal Easter Show 2012: Carousel",
    "caption": "Round and round on the carousel at the 2012 Royal Easter Show.",
+   "added": "2026-09-15",
    "slug": "royal-easter-show-2012-carousel",
    "when": "2012"
   },
@@ -1438,6 +1571,7 @@ window.MEMORIES = {
    "emoji": "🦒",
    "title": "A Day at the Zoo",
    "caption": "Hello, animals! A day out at the zoo.",
+   "added": "2026-09-15",
    "slug": "a-day-at-the-zoo"
   },
   {
@@ -1448,6 +1582,7 @@ window.MEMORIES = {
    "emoji": "🚲",
    "title": "Bike Riding: Day 2",
    "caption": "Day two on the bike, and getting the hang of it!",
+   "added": "2026-09-15",
    "slug": "bike-riding-day-2"
   },
   {
@@ -1458,6 +1593,7 @@ window.MEMORIES = {
    "emoji": "🎈",
    "title": "Bouncy Slide",
    "caption": "Bounce, slide, repeat!",
+   "added": "2026-09-15",
    "slug": "bouncy-slide"
   },
   {
@@ -1468,6 +1604,7 @@ window.MEMORIES = {
    "emoji": "🎡",
    "title": "Carousel at Devonport Ferry Terminal",
    "caption": "A spin on the carousel at Devonport Ferry Terminal.",
+   "added": "2026-09-15",
    "slug": "carousel-at-devonport-ferry-terminal"
   },
   {
@@ -1478,6 +1615,7 @@ window.MEMORIES = {
    "emoji": "🧗",
    "title": "Climbing at Western Springs",
    "caption": "Up, up, up at Western Springs Playground.",
+   "added": "2026-09-15",
    "slug": "climbing-at-western-springs"
   },
   {
@@ -1488,6 +1626,7 @@ window.MEMORIES = {
    "emoji": "💻",
    "title": "Computer Work at the Zoo",
    "caption": "Very important computer work… at the zoo.",
+   "added": "2026-09-15",
    "slug": "computer-work-at-the-zoo"
   },
   {
@@ -1498,6 +1637,7 @@ window.MEMORIES = {
    "emoji": "⛰️",
    "title": "Mountain Climbing",
    "caption": "Onwards and upwards: the great mountain climb!",
+   "added": "2026-09-15",
    "slug": "mountain-climbing"
   },
   {
@@ -1508,6 +1648,7 @@ window.MEMORIES = {
    "emoji": "🧗‍♀️",
    "title": "Rock Climbing at the Zoo",
    "caption": "Tiny climber, big wall. Rock climbing at the zoo!",
+   "added": "2026-09-15",
    "slug": "rock-climbing-at-the-zoo"
   },
   {
@@ -1518,6 +1659,7 @@ window.MEMORIES = {
    "emoji": "🪢",
    "title": "Rope Walking at the Zoo",
    "caption": "Steady… steady… rope walking at the zoo.",
+   "added": "2026-09-15",
    "slug": "rope-walking-at-the-zoo"
   },
   {
@@ -1528,6 +1670,7 @@ window.MEMORIES = {
    "emoji": "🛴",
    "title": "Scooter Ride (9 April)",
    "caption": "Whoosh! Scooter riding on the 9th of April.",
+   "added": "2026-09-15",
    "slug": "scooter-ride-9-april"
   },
   {
@@ -1538,6 +1681,7 @@ window.MEMORIES = {
    "emoji": "❄️",
    "title": "Snow Planet (Part 1)",
    "caption": "Brrr! A trip to Snow Planet. Snow, cold cheeks and big smiles.",
+   "added": "2026-09-15",
    "slug": "snow-planet-part-1"
   },
   {
@@ -1548,6 +1692,7 @@ window.MEMORIES = {
    "emoji": "⛄",
    "title": "Snow Planet (Part 2)",
    "caption": "More snowy fun at Snow Planet. Round two!",
+   "added": "2026-09-15",
    "slug": "snow-planet-part-2"
   },
   {
@@ -1558,6 +1703,7 @@ window.MEMORIES = {
    "emoji": "🌳",
    "title": "Swinging at Western Springs",
    "caption": "Higher! Higher! Swinging at Western Springs Playground.",
+   "added": "2026-09-15",
    "slug": "swinging-at-western-springs"
   },
   {
@@ -1568,6 +1714,7 @@ window.MEMORIES = {
    "emoji": "🚴‍♀️",
    "title": "The New Bike (9 April)",
    "caption": "Shiny new bike, first rides, 9th of April.",
+   "added": "2026-09-15",
    "slug": "the-new-bike-9-april"
   },
   {
@@ -1578,6 +1725,7 @@ window.MEMORIES = {
    "emoji": "🧸",
    "title": "At Playgroup (Part 2)",
    "caption": "Another busy morning at playgroup.",
+   "added": "2026-09-15",
    "slug": "at-playgroup-part-2"
   },
   {
@@ -1588,6 +1736,7 @@ window.MEMORIES = {
    "emoji": "👩‍🏫",
    "title": "At School with Jeeta Teacher",
    "caption": "School time with Jeeta Teacher.",
+   "added": "2026-09-15",
    "slug": "at-school-with-jeeta-teacher"
   },
   {
@@ -1598,6 +1747,7 @@ window.MEMORIES = {
    "emoji": "🌉",
    "title": "Balancing Bridge at Playschool",
    "caption": "Arms out, eyes forward: the playschool balancing bridge.",
+   "added": "2026-09-15",
    "slug": "balancing-bridge-at-playschool"
   },
   {
@@ -1608,6 +1758,7 @@ window.MEMORIES = {
    "emoji": "🏅",
    "title": "Dance Class: Certificate Time",
    "caption": "Last day of term, and a certificate for our little dancer!",
+   "added": "2026-09-15",
    "slug": "dance-class-certificate-time"
   },
   {
@@ -1618,6 +1769,7 @@ window.MEMORIES = {
    "emoji": "💃",
    "title": "Dance Class: Last Day of Term",
    "caption": "Showtime! Dance moves from the last day of term.",
+   "added": "2026-09-15",
    "slug": "dance-class-last-day-of-term"
   },
   {
@@ -1628,6 +1780,7 @@ window.MEMORIES = {
    "emoji": "🧩",
    "title": "Playgroup (Part 1)",
    "caption": "Playgroup, episode one.",
+   "added": "2026-09-15",
    "slug": "playgroup-part-1"
   },
   {
@@ -1638,6 +1791,7 @@ window.MEMORIES = {
    "emoji": "🪀",
    "title": "Playgroup (Part 2)",
    "caption": "Playgroup, episode two.",
+   "added": "2026-09-15",
    "slug": "playgroup-part-2"
   },
   {
@@ -1648,6 +1802,7 @@ window.MEMORIES = {
    "emoji": "🖍️",
    "title": "Playgroup (Part 3)",
    "caption": "Playgroup, episode three.",
+   "added": "2026-09-15",
    "slug": "playgroup-part-3"
   },
   {
@@ -1658,6 +1813,7 @@ window.MEMORIES = {
    "emoji": "🧼",
    "title": "Washing Hands with a New Friend",
    "caption": "Scrub-a-dub at playschool, with a brand-new friend.",
+   "added": "2026-09-15",
    "slug": "washing-hands-with-a-new-friend"
   },
   {
@@ -1668,6 +1824,7 @@ window.MEMORIES = {
    "emoji": "🐘",
    "title": "Animals",
    "caption": "Roar! Moo! Quack! All about the animals.",
+   "added": "2026-09-15",
    "slug": "animals"
   },
   {
@@ -1678,6 +1835,7 @@ window.MEMORIES = {
    "emoji": "🎤",
    "title": "Anthakshari",
    "caption": "Antakshari! The song-chain game, family edition.",
+   "added": "2026-09-15",
    "slug": "anthakshari"
   },
   {
@@ -1688,6 +1846,7 @@ window.MEMORIES = {
    "emoji": "🦖",
    "title": "I Love Barney!!!",
    "caption": "Three exclamation marks' worth of Barney love.",
+   "added": "2026-09-15",
    "slug": "i-love-barney"
   },
   {
@@ -1698,6 +1857,7 @@ window.MEMORIES = {
    "emoji": "🕷️",
    "title": "Incy Wincy Spider",
    "caption": "Up the water spout… with all the actions!",
+   "added": "2026-09-15",
    "slug": "incy-wincy-spider"
   },
   {
@@ -1708,6 +1868,7 @@ window.MEMORIES = {
    "emoji": "📜",
    "title": "Kural Time",
    "caption": "Kural time. Listen closely!",
+   "added": "2026-09-15",
    "slug": "kural-time"
   },
   {
@@ -1718,6 +1879,7 @@ window.MEMORIES = {
    "emoji": "📖",
    "title": "Reading “Just Like My Dad” with Mama",
    "caption": "Storytime with Mama and her next-favourite book, “Just Like My Dad”.",
+   "added": "2026-09-15",
    "slug": "reading-just-like-my-dad-with-mama"
   },
   {
@@ -1728,6 +1890,7 @@ window.MEMORIES = {
    "emoji": "📚",
    "title": "Reading “Just Like My Mum” All By Herself",
    "caption": "Her favourite book, “Just Like My Mum”, read ALL by herself!",
+   "added": "2026-09-15",
    "slug": "reading-just-like-my-mum-all-by-herself"
   },
   {
@@ -1738,6 +1901,7 @@ window.MEMORIES = {
    "emoji": "📕",
    "title": "Reading “Just Like My Mum” with Mama",
    "caption": "Her all-time favourite, “Just Like My Mum”, read together with Mama.",
+   "added": "2026-09-15",
    "slug": "reading-just-like-my-mum-with-mama"
   },
   {
@@ -1748,6 +1912,7 @@ window.MEMORIES = {
    "emoji": "🎶",
    "title": "Rhymes",
    "caption": "A rhyme-time medley.",
+   "added": "2026-09-15",
    "slug": "rhymes"
   },
   {
@@ -1758,6 +1923,7 @@ window.MEMORIES = {
    "emoji": "🔤",
    "title": "The ABC Song",
    "caption": "A-B-C-D… now we know our ABCs!",
+   "added": "2026-09-15",
    "slug": "the-abc-song"
   },
   {
@@ -1768,6 +1934,7 @@ window.MEMORIES = {
    "emoji": "💗",
    "title": "The I Love You Song",
    "caption": "A song with the best lyrics ever written. Warning: may cause happy tears.",
+   "added": "2026-09-15",
    "slug": "the-i-love-you-song"
   },
   {
@@ -1778,6 +1945,7 @@ window.MEMORIES = {
    "emoji": "🎹",
    "title": "The Keyboard Player",
    "caption": "Ladies and gentlemen… on the keyboard…",
+   "added": "2026-09-15",
    "slug": "the-keyboard-player"
   },
   {
@@ -1788,6 +1956,7 @@ window.MEMORIES = {
    "emoji": "☕",
    "title": "A Chat at Home",
    "caption": "Settle in for a little chat at home.",
+   "added": "2026-09-15",
    "slug": "a-chat-at-home"
   },
   {
@@ -1798,6 +1967,7 @@ window.MEMORIES = {
    "emoji": "😭",
    "title": "Adam and the Kalla Alugai",
    "caption": "Adam, plus a performance of kalla alugai (the famous pretend cry). Award-worthy.",
+   "added": "2026-09-15",
    "slug": "adam-and-the-kalla-alugai"
   },
   {
@@ -1808,6 +1978,7 @@ window.MEMORIES = {
    "emoji": "🐦",
    "title": "Angry Birds",
    "caption": "Angry Birds time! 🐷",
+   "added": "2026-09-15",
    "slug": "angry-birds"
   },
   {
@@ -1818,6 +1989,7 @@ window.MEMORIES = {
    "emoji": "🏡",
    "title": "At Home",
    "caption": "Just a regular day at home, and that's what makes it special.",
+   "added": "2026-09-15",
    "slug": "at-home"
   },
   {
@@ -1828,6 +2000,7 @@ window.MEMORIES = {
    "emoji": "🗣️",
    "title": "Blah Blah Blah Time",
    "caption": "Chatterbox mode: ON. Somebody had a LOT to say!",
+   "added": "2026-09-15",
    "slug": "blah-blah-blah-time"
   },
   {
@@ -1838,6 +2011,7 @@ window.MEMORIES = {
    "emoji": "🥤",
    "title": "Caught Milo-Handed!",
    "caption": "Busted! The great Milo mystery, solved on camera.",
+   "added": "2026-09-15",
    "slug": "caught-milo-handed"
   },
   {
@@ -1848,6 +2022,7 @@ window.MEMORIES = {
    "emoji": "🐆",
    "title": "Diego, Diego, Diego… ADAM!",
    "caption": "Diego, Diego, Diego… ADAM! (You had to be there. Now you can be.)",
+   "added": "2026-09-15",
    "slug": "diego-diego-diego-adam"
   },
   {
@@ -1858,6 +2033,7 @@ window.MEMORIES = {
    "emoji": "🗑️",
    "title": "Little Helper: Rubbish Duty (Part 2)",
    "caption": "Chief rubbish-disposal helper, reporting for duty (again).",
+   "added": "2026-09-15",
    "slug": "little-helper-rubbish-duty-part-2"
   },
   {
@@ -1868,6 +2044,7 @@ window.MEMORIES = {
    "emoji": "🦜",
    "title": "Love You KILI",
    "caption": "Love you, KILI! 💚",
+   "added": "2026-09-15",
    "slug": "love-you-kili"
   },
   {
@@ -1878,6 +2055,7 @@ window.MEMORIES = {
    "emoji": "🍽️",
    "title": "Mama's New Dishwasher",
    "caption": "Big news in the kitchen: Mama's new dishwasher!",
+   "added": "2026-09-15",
    "slug": "mama-s-new-dishwasher"
   },
   {
@@ -1888,6 +2066,7 @@ window.MEMORIES = {
    "emoji": "🦩",
    "title": "Mama, I Am a Flamingo",
    "caption": "“Mama, I am flamingo!” One leg, maximum elegance.",
+   "added": "2026-09-15",
    "slug": "mama-i-am-a-flamingo"
   },
   {
@@ -1898,6 +2077,7 @@ window.MEMORIES = {
    "emoji": "🔴",
    "title": "Polkadot Girl",
    "caption": "Dots, dots, everywhere dots. Meet Polkadot Girl!",
+   "added": "2026-09-15",
    "slug": "polkadot-girl"
   },
   {
@@ -1908,6 +2088,7 @@ window.MEMORIES = {
    "emoji": "✨",
    "title": "Sahana in Durra!!",
    "caption": "Sahana in Durra!! (Two exclamation marks. It was that good.)",
+   "added": "2026-09-15",
    "slug": "sahana-in-durra"
   },
   {
@@ -1918,6 +2099,7 @@ window.MEMORIES = {
    "emoji": "🌙",
    "title": "Sleeptime at Nite",
    "caption": "Shhh… it's sleeptime. (Or is it?)",
+   "added": "2026-09-15",
    "slug": "sleeptime-at-nite"
   },
   {
@@ -1928,6 +2110,7 @@ window.MEMORIES = {
    "emoji": "🙅‍♀️",
    "title": "That's WRONG, Dada!",
    "caption": "Dada got it wrong, and he was told so. Very clearly.",
+   "added": "2026-09-15",
    "slug": "that-s-wrong-dada"
   },
   {
@@ -1938,6 +2121,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Phone Video #0040",
    "caption": "A little treasure straight off the phone.",
+   "added": "2026-09-15",
    "slug": "phone-video-0040"
   },
   {
@@ -1948,6 +2132,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Phone Video #0041",
    "caption": "A little treasure straight off the phone.",
+   "added": "2026-09-15",
    "slug": "phone-video-0041"
   },
   {
@@ -1958,6 +2143,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Phone Video · 15 Feb 2011",
    "caption": "A little treasure straight off the phone.",
+   "added": "2026-09-15",
    "slug": "phone-video-15-feb-2011",
    "when": "15 February 2011"
   },
@@ -1969,6 +2155,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Phone Video · 19 Feb 2011 (a)",
    "caption": "A little treasure straight off the phone.",
+   "added": "2026-09-15",
    "slug": "phone-video-19-feb-2011-a",
    "when": "19 February 2011"
   },
@@ -1980,6 +2167,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Phone Video · 19 Feb 2011 (b)",
    "caption": "A little treasure straight off the phone.",
+   "added": "2026-09-15",
    "slug": "phone-video-19-feb-2011-b",
    "when": "19 February 2011"
   },
@@ -1991,6 +2179,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Phone Video · 24 Apr 2011",
    "caption": "A little treasure straight off the phone.",
+   "added": "2026-09-15",
    "slug": "phone-video-24-apr-2011",
    "when": "24 April 2011"
   },
@@ -2002,6 +2191,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Phone Video · 25 Apr 2011",
    "caption": "A little treasure straight off the phone.",
+   "added": "2026-09-15",
    "slug": "phone-video-25-apr-2011",
    "when": "25 April 2011"
   },
@@ -2013,6 +2203,7 @@ window.MEMORIES = {
    "emoji": "📼",
    "title": "Phone Video · 30 Jan 2011",
    "caption": "A little treasure straight off the phone.",
+   "added": "2026-09-15",
    "slug": "phone-video-30-jan-2011",
    "when": "30 January 2011"
   }

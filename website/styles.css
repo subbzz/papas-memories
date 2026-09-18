@@ -347,3 +347,15 @@ html[data-tint="peach"] body{--paper:#fff8f2;--paper2:#fdeade;--wash1:rgba(255,1
   100%{transform:translate3d(calc(var(--swing,30px) * -1),-118vh,0) rotate(-3deg);opacity:0}
 }
 @media (prefers-reduced-motion:reduce){.flyer{display:none}}
+
+/* ---------- today's memory + what's new ---------- */
+.today{display:grid;justify-items:center;gap:6px;max-width:560px;margin:0 auto 14px;padding:18px 22px 20px;text-decoration:none;color:var(--ink);
+  background:#fff;border:3px solid var(--ink);border-radius:26px;box-shadow:6px 6px 0 var(--ink);transform:rotate(-1deg);transition:transform .18s ease}
+.today:hover{transform:rotate(0) translateY(-3px)}
+.today-tag{background:var(--c,var(--sun));border:2.5px solid var(--ink);border-radius:999px;padding:.1em .8em;font-weight:600;font-size:.9rem}
+.today-emo{font-size:2.6rem;line-height:1.1}
+.today-title{font-family:var(--hand);font-size:1.8rem;line-height:1.1;text-align:center}
+.today-cap{color:var(--ink-soft);font-size:.98rem;text-align:center;max-width:42ch}
+.new-chip{display:inline-block;margin:0 0 10px;background:var(--sun);border:2.5px solid var(--ink);border-radius:999px;padding:.25em 1em;
+  font-weight:600;text-decoration:none;color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.new-dot{position:absolute;top:8px;left:8px;font-size:20px;filter:drop-shadow(0 1px 0 #fff)}

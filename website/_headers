@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: default-src 'none'; script-src 'self' https://challenges.cloudflare.com; style-src 'self'; font-src 'self'; img-src 'self' data: https://*.sharepoint.com https://*.svc.ms; media-src 'self' https://*.sharepoint.com; connect-src 'self' https://graph.microsoft.com https://login.microsoftonline.com; frame-src https://login.microsoftonline.com https://challenges.cloudflare.com; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; manifest-src 'self'
+  Content-Security-Policy: default-src 'none'; script-src 'self' https://challenges.cloudflare.com; style-src 'self'; font-src 'self'; img-src 'self' data: https://*.sharepoint.com https://*.svc.ms; media-src 'self' https://*.sharepoint.com; connect-src 'self' https://graph.microsoft.com https://login.microsoftonline.com; frame-src https://login.microsoftonline.com https://challenges.cloudflare.com; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; manifest-src 'self'; worker-src 'self'
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
@@ -28,6 +28,12 @@
   Cache-Control: no-cache
 /sky.js
   Cache-Control: no-cache
+/sw.js
+  Cache-Control: no-cache
+/manifest.webmanifest
+  Cache-Control: no-cache
+/icons/*
+  Cache-Control: public, max-age=604800
 /admin.js
   Cache-Control: no-cache
 /config.js

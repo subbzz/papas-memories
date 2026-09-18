@@ -154,10 +154,14 @@ for line in open(os.path.join(HERE, "clips.txt"), encoding="utf-8"):
             emo, title, cap, dt = ("📼", f"Voice Tape #{n}", "A mystery tape from the voice archive. Who knows what she'll say? Press play!", None)
         items.append(dict(kind="audio", folder="Audio", file=fname, cat="tapes", emoji=emo, title=title, caption=cap, date=dt))
 
+# When each memory appeared on the site (used for the "new since your last visit" sparkles).
+ADDED_OLD, ADDED_MAMA_VIDEO = "2026-09-15", "2026-09-16"
+for it in items: it["added"] = ADDED_OLD
+for it in EXTRA: it["added"] = ADDED_OLD
 items.extend(EXTRA)
 # Mama's wedding and ceremony clips (cut from the original discs; titles/captions in mama_video_clips.json)
 for it in json.load(open(os.path.join(HERE, "mama_video_clips.json"), encoding="utf-8")):
-    items.append(dict(it, date=None))
+    items.append(dict(it, date=None, added=ADDED_MAMA_VIDEO))
 assert len(items) == 191, len(items)
 # No upload/backup dates: only dates embedded in the original file names are shown (see V/A tables).
 catorder = [c[0] for c in CATS]

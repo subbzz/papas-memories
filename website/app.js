@@ -38,6 +38,10 @@
     set(k, v) { try { localStorage.setItem("pm:" + k, JSON.stringify(v)); } catch { /* ignore */ } }
   };
   let favs = new Set(store.get("favs", []));
+  // "New since your last visit": compare each memory's added-date with the last time this browser opened the site.
+  const LAST_SEEN = store.get("lastSeen", 0);
+  const NEW = new Set(LAST_SEEN ? ITEMS.filter(it => it.added && Date.parse(it.added + "T00:00:00Z") > LAST_SEEN).map(it => it.slug) : []);
+  store.set("lastSeen", Date.now());
   const saveFavs = () => { store.set("favs", [...favs]); $("#favCount").textContent = favs.size; };
 
   /* ---------- toast + confetti ---------- */
@@ -201,6 +205,7 @@
       <div class="photo">${photo}<span class="play" aria-hidden="true">${it.kind === "audio" ? "🎧" : "▶"}</span></div>
       <span class="emo-badge" aria-hidden="true">${it.emoji}</span>
       ${favs.has(it.slug) ? `<span class="fav-dot" title="Favourite">💖</span>` : ""}
+      ${NEW.has(it.slug) ? `<span class="new-dot" title="New since your last visit">✨</span>` : ""}
       <div class="cap">${esc(it.title)}</div>${it.shared ? `<div class="cap-date">📮 shared ${esc(sharedText(it, true))}</div>` : ""}</a>`;
   }
   function applyVars(root = app) {
@@ -251,6 +256,23 @@
   }
   function bobJar() { app.querySelectorAll(".jar .fill span").forEach(s => s.style.animationDelay = `-${s.dataset.d}s`); }
 
+  function todaysPick() {
+    const d = new Date(), key = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+    let h = 0; for (const ch of key) h = (h * 31 + ch.charCodeAt(0)) >>> 0; // same memory for everyone, all day
+    return ITEMS[h % ITEMS.length];
+  }
+  function viewNew() {
+    setTitle("New memories");
+    const list = ITEMS.filter(it => NEW.has(it.slug));
+    app.innerHTML = `
+      <div class="crumbs"><a class="chip" href="#/">🏠 Home</a></div>
+      <h1 class="section-title flush">✨ New since your last visit</h1>
+      <div id="wall">${list.length ? loadingHtml("Fetching the new ones…") : `<p class="empty">Nothing new right now. Check back soon! 💛</p>`}</div>`;
+    if (!list.length) return;
+    loadMedia().then(() => { const w = $("#wall"); if (!w) return; w.innerHTML = `<div class="wall">${list.map(it => polaroid(it, it.idx)).join("")}</div>`; applyVars(w); })
+      .catch(e => { const w = $("#wall"); if (w) w.innerHTML = errorHtml(e); });
+  }
+
   function viewLanding() {
     setTitle("");
     const card = (w, i) => {
@@ -273,6 +295,14 @@
         <h1 class="landing-title">Two treasure boxes, <span class="pop">one</span> happy family.</h1>
         <p class="landing-sub">Whose memories shall we open today?</p>
         <div class="worlds">${card(WORLDS.papa, 0)}${card(WORLDS.mama, 1)}</div>
+        ${(() => { const t = todaysPick(); const w = WORLD_OF[t.cat];
+          return `<a class="today" href="#/m/${t.slug}" data-c="${w.color}">
+            <span class="today-tag">🌞 Today's memory</span>
+            <span class="today-emo" aria-hidden="true">${t.emoji}</span>
+            <span class="today-title">${esc(t.title)}</span>
+            <span class="today-cap">${esc(t.caption)}</span>
+            <span class="btn btn-pink">▶ Play today's memory</span></a>`; })()}
+        ${NEW.size ? `<a class="new-chip" href="#/new">✨ ${NEW.size} new since your last visit</a>` : ""}
         <div class="landing-actions"><button class="btn btn-big btn-sun" type="button" data-act="shuffle">🎲 Surprise me from anywhere!</button>
           <a class="btn btn-big btn-ghost" href="#/favourites">💖 My favourites</a></div>
       </section>`;
@@ -546,6 +576,7 @@
     if (kind === "m" && arg) viewMemory(decodeURIComponent(arg));
     else if (kind === "c" && arg) viewCategory(arg);
     else if (kind === "favourites") viewFavourites();
+    else if (kind === "new") viewNew();
     else if (WORLDS[kind]) viewWorld(kind);
     else viewLanding();
     // Music box plays on the sign-in and landing screens only; it fades out once a Papa/Mama box (or any clip) opens.
@@ -613,6 +644,9 @@
     location.replace("/bye/family/");
   }
   document.addEventListener("click", e => { if (e.target.closest('[data-act="signout"]')) FAMILY ? familySignOut() : $("#signOutBtn").click(); });
+
+  // Lets the site be added to a phone's home screen and opened when the network is patchy.
+  if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
 
   /* ---------- boot ---------- */
   async function familyBoot() {
