@@ -7,6 +7,7 @@
   --paper:#fff8ec; --paper2:#fdf0dc; --ink:#3b2a4a; --ink-soft:#6d5a7c;
   --pink:#ff5d8f; --sun:#ffc93c; --sky:#4cc9f0; --mint:#80ed99; --lilac:#b392f0; --orange:#ff9f43;
   --card:#ffffff; --shadow:0 2px 0 rgba(59,42,74,.08),0 10px 24px rgba(59,42,74,.14);
+  --wash1:rgba(255,93,143,.06); --wash2:rgba(76,201,240,.06);
   --radius:18px; --hand:"Gochi Hand","Segoe Print","Comic Sans MS",cursive;
   --round:"Fredoka","Segoe UI Rounded","Nunito",system-ui,sans-serif;
   color-scheme:light;
@@ -18,10 +19,11 @@ body{
   background-color:var(--paper);
   background-image:
     radial-gradient(rgba(59,42,74,.07) 1.2px, transparent 1.3px),
-    linear-gradient(180deg, rgba(255,93,143,.06), rgba(76,201,240,.06));
+    linear-gradient(180deg, var(--wash1), var(--wash2));
   background-size:22px 22px, 100% 100%;
   padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
   overflow-x:hidden;
+  transition:background-color 6s linear;
 }
 [hidden]{display:none!important}
 a{color:inherit}
@@ -54,7 +56,7 @@ button{font:inherit;color:inherit}
 
 /* top bar */
 .topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:10px clamp(16px,4vw,40px);background:rgba(255,248,236,.9);backdrop-filter:blur(8px);border-bottom:3px dashed rgba(59,42,74,.18)}
+  padding:10px clamp(16px,4vw,40px);background:color-mix(in srgb, var(--paper) 90%, transparent);backdrop-filter:blur(8px);transition:background-color 6s linear;border-bottom:3px dashed rgba(59,42,74,.18)}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
 .brand-jar{font-size:30px;display:inline-block;animation:wiggle 3.5s ease-in-out infinite}
 .brand-text{font-family:var(--hand);font-size:clamp(1.5rem,4vw,2.1rem);line-height:1;color:var(--pink);text-shadow:2px 2px 0 #fff,3px 3px 0 rgba(59,42,74,.15)}
@@ -315,3 +317,33 @@ main:focus,main:focus-visible{outline:none}
 .landing-hello{display:inline-block;margin:0 0 6px;background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:.25em 1em;
   font-weight:600;font-size:1.1rem;box-shadow:3px 3px 0 var(--ink);transform:rotate(-2deg)}
 .landing-hello:empty{display:none}
+
+/* ---------- gentle changing tints (set by sky.js, swapped every so often) ---------- */
+html[data-tint="cream"] body{--paper:#fff8ec;--paper2:#fdf0dc;--wash1:rgba(255,93,143,.06);--wash2:rgba(76,201,240,.06)}
+html[data-tint="rose"]  body{--paper:#fff6f4;--paper2:#fdeaee;--wash1:rgba(255,93,143,.08);--wash2:rgba(255,201,60,.05)}
+html[data-tint="mint"]  body{--paper:#f5fbf3;--paper2:#e9f6ea;--wash1:rgba(128,237,153,.10);--wash2:rgba(76,201,240,.06)}
+html[data-tint="sky"]   body{--paper:#f4fafd;--paper2:#e8f4fb;--wash1:rgba(76,201,240,.10);--wash2:rgba(179,146,240,.05)}
+html[data-tint="sun"]   body{--paper:#fffaee;--paper2:#fdf2d9;--wash1:rgba(255,201,60,.10);--wash2:rgba(255,159,67,.05)}
+html[data-tint="lilac"] body{--paper:#faf7fe;--paper2:#f1ebfb;--wash1:rgba(179,146,240,.09);--wash2:rgba(255,93,143,.05)}
+html[data-tint="peach"] body{--paper:#fff8f2;--paper2:#fdeade;--wash1:rgba(255,159,67,.09);--wash2:rgba(255,93,143,.05)}
+
+/* ---------- butterflies, doves and balloons drifting past ---------- */
+.flyer{position:absolute;font-size:var(--size,26px);opacity:.34;will-change:transform;pointer-events:none;
+  animation:cross var(--dur,40s) linear var(--delay,0s) infinite var(--dir,normal)}
+.fly-b{top:var(--y,40%);left:0;animation-name:cross}
+.fly-o{left:var(--x,50%);bottom:-12vh;animation-name:rise}
+@keyframes cross{
+  0%{transform:translate3d(-14vw,0,0) rotate(-4deg)}
+  25%{transform:translate3d(14vw,calc(var(--swing,30px) * -1),0) rotate(6deg)}
+  50%{transform:translate3d(45vw,var(--swing,30px),0) rotate(-6deg)}
+  75%{transform:translate3d(78vw,calc(var(--swing,30px) * -1),0) rotate(5deg)}
+  100%{transform:translate3d(114vw,0,0) rotate(-4deg)}
+}
+@keyframes rise{
+  0%{transform:translate3d(0,0,0) rotate(-3deg);opacity:0}
+  10%{opacity:.34}
+  50%{transform:translate3d(var(--swing,30px),-60vh,0) rotate(4deg)}
+  90%{opacity:.3}
+  100%{transform:translate3d(calc(var(--swing,30px) * -1),-118vh,0) rotate(-3deg);opacity:0}
+}
+@media (prefers-reduced-motion:reduce){.flyer{display:none}}
