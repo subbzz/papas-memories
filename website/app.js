@@ -45,12 +45,14 @@
   const saveFavs = () => { store.set("favs", [...favs]); $("#favCount").textContent = favs.size; };
 
   /* ---------- toast + confetti ---------- */
+  // (music.js uses this to explain a silent phone)
   let toastTimer;
   function toast(msg) {
     const t = $("#toast"); t.textContent = msg; t.classList.add("show");
     clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
   }
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.PM_TOAST = msg => toast(msg);
   function confetti(n = 120) {
     if (reduceMotion) return;
     const cv = $("#confetti"), ctx = cv.getContext("2d");
@@ -579,8 +581,8 @@
     else if (kind === "new") viewNew();
     else if (WORLDS[kind]) viewWorld(kind);
     else viewLanding();
-    // Music box plays on the sign-in and landing screens only; it fades out once a Papa/Mama box (or any clip) opens.
-    if (kind === "m" || kind === "c" || kind === "favourites" || WORLDS[kind]) window.PM_MUSIC?.stop(); else window.PM_MUSIC?.play();
+    // The music box plays while browsing; it fades out the moment a clip's own page opens.
+    if (kind === "m") window.PM_MUSIC?.stop(); else window.PM_MUSIC?.play(); // quiet only where a clip plays
     scrollTo(0, 0);
     app.focus({ preventScroll: true });
   }

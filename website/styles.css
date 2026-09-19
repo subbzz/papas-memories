@@ -31,7 +31,14 @@ button{font:inherit;color:inherit}
 :focus-visible{outline:3px dashed var(--pink);outline-offset:3px;border-radius:8px}
 .hand{font-family:var(--hand);font-weight:400;letter-spacing:.5px}
 .hide-sm{}
-@media (max-width:560px){.hide-sm,.topnav .btn-sun span{display:none}}
+@media (max-width:560px){
+  .hide-sm,.topnav .btn-sun span{display:none}
+  .topbar{padding:8px 12px}
+  .topnav .btn{padding:.4em .7em}
+}
+@media (max-width:430px){.brand-text{font-size:1.15rem}}
+.brand-short{display:none}
+@media (max-width:560px){.brand-full{display:none}.brand-short{display:inline}}
 
 /* floating doodles */
 .doodles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
@@ -55,12 +62,12 @@ button{font:inherit;color:inherit}
 .btn[aria-pressed="true"]{background:var(--pink);color:#fff}
 
 /* top bar */
-.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:nowrap;overflow:hidden;
   padding:10px clamp(16px,4vw,40px);background:color-mix(in srgb, var(--paper) 90%, transparent);backdrop-filter:blur(8px);transition:background-color 6s linear;border-bottom:3px dashed rgba(59,42,74,.18)}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0;flex:0 1 auto}
 .brand-jar{font-size:30px;display:inline-block;animation:wiggle 3.5s ease-in-out infinite}
-.brand-text{font-family:var(--hand);font-size:clamp(1.5rem,4vw,2.1rem);line-height:1;color:var(--pink);text-shadow:2px 2px 0 #fff,3px 3px 0 rgba(59,42,74,.15)}
-.topnav{display:flex;gap:10px;align-items:center}
+.brand-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--hand);font-size:clamp(1.25rem,4.4vw,2.1rem);line-height:1;color:var(--pink);text-shadow:2px 2px 0 #fff,3px 3px 0 rgba(59,42,74,.15)}
+.topnav{display:flex;gap:8px;align-items:center;flex:0 0 auto}
 @keyframes wiggle{0%,100%{transform:rotate(0)}10%{transform:rotate(-12deg)}20%{transform:rotate(10deg)}30%{transform:rotate(0)}}
 
 main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:24px clamp(16px,4vw,40px) 40px;outline:none}
@@ -359,3 +366,9 @@ html[data-tint="peach"] body{--paper:#fff8f2;--paper2:#fdeade;--wash1:rgba(255,1
 .new-chip{display:inline-block;margin:0 0 10px;background:var(--sun);border:2.5px solid var(--ink);border-radius:999px;padding:.25em 1em;
   font-weight:600;text-decoration:none;color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
 .new-dot{position:absolute;top:8px;left:8px;font-size:20px;filter:drop-shadow(0 1px 0 #fff)}
+
+@media (max-width:400px){
+  .btn-big{font-size:1.05rem;padding:.6em 1em}
+  .landing-actions .btn-big{max-width:100%;white-space:normal;text-align:center}
+  .hero-actions .btn-big{flex:1 1 100%;justify-content:center}
+}

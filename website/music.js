@@ -43,6 +43,16 @@
   ];
   const KEYS = [-3, -2, 0, 0, 2, 3]; // semitone shifts: same tune, different colour
 
+  // iPhones keep Web Audio quiet unless the page has also started a media element, so a tiny silent
+  // looping clip is started on the same tap. It also keeps the sound alive when switching apps.
+  const SILENT = "data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjYwLjE2LjEwMAAAAAAAAAAAAAAA//NwwAAAAAAAAAAAAEluZm8AAAAPAAAAEgAAAo0AUVFRUVFcXFxcXFxmZmZmZnBwcHBwcHp6enp6hISEhISEj4+Pj4+ZmZmZmZmjo6Ojo66urq6urri4uLi4uMLCwsLCzMzMzMzM1tbW1tbh4eHh4eHr6+vr6/X19fX19f//////AAAAAExhdmM2MC4zMQAAAAAAAAAAAAAAACQDzAAAAAAAAAKNGWyvZwAAAAAAAAAAAAAAAAD/8xDEAAAAA0gAAAAATEFNRTMuMTAwVVVVVf/zEsQNAAADSAAAAABVVVVVVVVVVVVVVVVVVf/zEMQbAAADSAAAAABVVVVVVVVVVVVVVVVV//MQxCgAAANIAAAAAFVVVVVVVVVVVVVVVVX/8xDENQAAA0gAAAAAVVVVVVVVVVVVVVVVVf/zEMRCAAADSAAAAABVVVVVVVVVVVVVVVVV//MQxE8AAANIAAAAAFVVVVVVVVVVVVVVVVX/8xDEXAAAA0gAAAAAVVVVVVVVVVVVVVVVVf/zEMRpAAADSAAAAABVVVVVVVVVVVVVVVVV//MSxHYAAANIAAAAAFVVVVVVVVVVVVVVVVVV//MQxIQAAANIAAAAAFVVVVVVVVVVVVVVVVX/8xDEkQAAA0gAAAAAVVVVVVVVVVVVVVVVVf/zEMSeAAADSAAAAABVVVVVVVVVVVVVVVVV//MQxKsAAANIAAAAAFVVVVVVVVVVVVVVVVX/8xDEuAAAA0gAAAAAVVVVVVVVVVVVVVVVVf/zEMTFAAADSAAAAABVVVVVVVVVVVVVVVVV//MQxNIAAANIAAAAAFVVVVVVVVVVVVVVVVX/8xLE3wAAA0gAAAAAVVVVVVVVVVVVVVVVVVU=";
+  let keeper = null;
+  function keepAlive() {
+    try {
+      if (!keeper) { keeper = new Audio(SILENT); keeper.loop = true; keeper.volume = 0.001; keeper.setAttribute("playsinline", ""); }
+      keeper.play().catch(() => {});
+    } catch { /* ignore */ }
+  }
   let ctx = null, master = null, timer = null;
   let wanted = false, armed = false;
   let cur = null; // { tune, shift, start, beat, events, idx, total }
@@ -107,6 +117,7 @@
     }
   }
   function begin() {
+    keepAlive();
     if (!ctx) {
       const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
       ctx = new AC();
@@ -123,6 +134,12 @@
       master.gain.linearRampToValueAtTime(0.5, now + 1.5);
       clearInterval(timer); timer = setInterval(schedule, 60); schedule();
       sync();
+      // If the sound never actually starts (iPhone side switch on silent, or audio blocked), say so once.
+      const t0 = ctx.currentTime;
+      setTimeout(() => {
+        if (!timer) return;
+        if (ctx.state !== "running" || ctx.currentTime - t0 < 0.2) window.PM_TOAST?.("🔇 No music? Check your phone's silent switch.");
+      }, 1200);
     }).catch(() => {});
   }
   function onGesture(e) {
@@ -152,7 +169,7 @@
     }
     sync();
   }
-  function stop() { wanted = false; disarm(); fadeOut(); sync(); }
+  function stop() { wanted = false; disarm(); fadeOut(); try { keeper?.pause(); } catch { /* ignore */ } sync(); }
 
   /* ---------- the floating 🎵 button ---------- */
   let btn = null;
