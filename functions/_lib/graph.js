@@ -52,7 +52,7 @@ export function parseMediaPath(pathname, prefix) {
   return ALLOWED.has(key) ? { folder, name, key } : null;
 }
 
-const TYPES = { mp3: "audio/mpeg", mp4: "video/mp4", wav: "audio/wav", m4a: "audio/mp4" };
+const TYPES = { mp3: "audio/mpeg", mp4: "video/mp4", wav: "audio/wav", m4a: "audio/mp4", jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", webp: "image/webp" };
 const PASS = ["content-length", "content-range", "accept-ranges", "last-modified", "etag"];
 
 /** Streams the file, honouring Range, without exposing any SharePoint URL or header to the browser. */

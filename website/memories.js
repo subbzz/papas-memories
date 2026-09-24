@@ -34,6 +34,14 @@ window.MEMORIES = {
    "count": 28
   },
   {
+   "id": "keepsakes",
+   "emoji": "🖼️",
+   "name": "Keepsakes & Photos",
+   "blurb": "Her own handwriting, and photos worth framing.",
+   "color": "#a0c4ff",
+   "count": 2
+  },
+  {
    "id": "birthday",
    "emoji": "🎂",
    "name": "Cake, Candles & Party Hats",
@@ -1314,6 +1322,29 @@ window.MEMORIES = {
    "caption": "The tape's final moments. (Ceremony tape 2, from 47:28 · about 4 min.)",
    "added": "2026-09-16",
    "slug": "mama-ceremony-28"
+  },
+  {
+   "kind": "image",
+   "folder": "Keepsakes",
+   "file": "Rabbit-Pros-and-Cons.jpg",
+   "cat": "keepsakes",
+   "emoji": "🐰",
+   "title": "Why We Should Get a Rabbit",
+   "caption": "Her case for a rabbit, in her own handwriting: pros on the left, cons on the right, and tips along the bottom. Note the other pet crossed out in the title. Tap the picture to zoom in.",
+   "added": "2026-09-24",
+   "slug": "why-we-should-get-a-rabbit"
+  },
+  {
+   "kind": "image",
+   "folder": "Keepsakes",
+   "file": "Santa-2009.jpg",
+   "cat": "keepsakes",
+   "emoji": "🎅",
+   "title": "With Santa, 2009",
+   "caption": "One very small girl, one very large beard. The camera recorded 7 November 2009.",
+   "added": "2026-09-24",
+   "slug": "with-santa-2009",
+   "when": "7 November 2009"
   },
   {
    "kind": "video",

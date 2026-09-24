@@ -159,7 +159,7 @@
       if (!tok) throw new Error("Your access has changed. Please refresh the page.");
       if (force || !media.size || media.__tok !== tok) {
         media = new Map();
-        for (const it of ITEMS) media.set(`${it.folder}/${it.file}`, { url: streamUrl(tok, it), thumb: it.kind === "video" ? thumbUrl(tok, it) : null, webUrl: null });
+        for (const it of ITEMS) media.set(`${it.folder}/${it.file}`, { url: streamUrl(tok, it), thumb: it.kind === "video" ? thumbUrl(tok, it) : it.kind === "image" ? streamUrl(tok, it) : null, webUrl: null });
         media.__tok = tok;
       }
       return media;
@@ -203,8 +203,9 @@
     const photo = it.kind === "audio"
       ? `<div class="mini-cassette"><i></i><i></i></div>`
       : (m?.thumb ? `<img src="${esc(m.thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : `<span class="ph-emo">${it.emoji}</span>`);
+    const badge = it.kind === "audio" ? "🎧" : it.kind === "image" ? "🔍" : "▶";
     return `<a class="polaroid" href="#/m/${it.slug}" data-r="${tilt(i)}" data-tape="${TAPES[i % TAPES.length]}" data-c="${c.color}">
-      <div class="photo">${photo}<span class="play" aria-hidden="true">${it.kind === "audio" ? "🎧" : "▶"}</span></div>
+      <div class="photo">${photo}<span class="play" aria-hidden="true">${badge}</span></div>
       <span class="emo-badge" aria-hidden="true">${it.emoji}</span>
       ${favs.has(it.slug) ? `<span class="fav-dot" title="Favourite">💖</span>` : ""}
       ${NEW.has(it.slug) ? `<span class="new-dot" title="New since your last visit">✨</span>` : ""}
@@ -418,7 +419,9 @@
     const { prev, next, pos, total } = neighbours(it);
     setTitle(it.title);
     const isFav = favs.has(it.slug);
-    const stage = it.kind === "audio"
+    const stage = it.kind === "image"
+      ? `<figure class="frame" id="mediaSlot">${loadingHtml("Unfolding the paper…")}</figure>`
+      : it.kind === "audio"
       ? `<div class="cassette" id="deck">
            <div class="label"><div class="t">${it.emoji} ${esc(it.title)}</div><div>Side A · ${esc(c.name)}</div>
              <div class="window"><span class="reel"></span><span class="reel"></span></div></div>
@@ -444,7 +447,7 @@
             <p>${esc(it.caption)}</p>
             ${it.when ? `<span class="stamp">📅 Recorded ${esc(it.when)}</span><br>` : ""}
             ${it.shared ? `<p class="shared-line">📮 ${it.kind === "video" ? "Shared on" : "Added to"} ${esc(it.sharedVia)}<br><b>${esc(sharedText(it))}</b>${it.sharedPrecision === "month" ? "" : " <small>(NZ time)</small>"}</p>` : ""}
-            <span class="stamp">${it.kind === "audio" ? "🎙️ VOICE TAPE" : "🎬 HOME VIDEO"}</span>
+            <span class="stamp">${it.kind === "audio" ? "🎙️ VOICE TAPE" : it.kind === "image" ? "🖼️ KEEPSAKE" : "🎬 HOME VIDEO"}</span>
           </div>
           <div class="tools">
             <button class="btn" type="button" data-act="fav" aria-pressed="${isFav}">${isFav ? "💖 Loved" : "🤍 Love it"}</button>
@@ -470,6 +473,17 @@
       if (!m.url) { await loadMedia(true); m = mediaFor(it); }
       if (BY_SLUG[slug] !== it || !$("#mediaSlot")) return; // navigated away
       const slot = $("#mediaSlot");
+      if (it.kind === "image") {
+        const img = document.createElement("img");
+        img.src = m.url; img.alt = it.title; img.className = "frame-img";
+        img.addEventListener("click", () => img.classList.toggle("zoomed"));
+        slot.replaceChildren(img);
+        const hint = document.createElement("figcaption");
+        hint.className = "frame-hint"; hint.textContent = "Tap the picture to zoom in";
+        slot.appendChild(hint);
+        $("#spLink").innerHTML = m.webUrl && isOwner() ? `<a href="${esc(m.webUrl)}" target="_blank" rel="noopener noreferrer">📁 Open original in SharePoint</a>` : "";
+        return;
+      }
       const el = document.createElement(it.kind === "audio" ? "audio" : "video");
       el.setAttribute("playsinline", ""); el.setAttribute("controlslist", "nodownload");
       if (it.kind === "video") {

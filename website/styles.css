@@ -372,3 +372,9 @@ html[data-tint="peach"] body{--paper:#fff8f2;--paper2:#fdeade;--wash1:rgba(255,1
   .landing-actions .btn-big{max-width:100%;white-space:normal;text-align:center}
   .hero-actions .btn-big{flex:1 1 100%;justify-content:center}
 }
+
+/* ---------- keepsakes: framed paper and photos ---------- */
+.frame{margin:0;background:#fff;border:3px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);padding:14px;display:grid;justify-items:center;gap:8px}
+.frame-img{max-width:100%;max-height:70vh;border-radius:10px;border:2px solid rgba(59,42,74,.25);cursor:zoom-in;background:#fdfdfd}
+.frame-img.zoomed{max-height:none;width:100%;cursor:zoom-out}
+.frame-hint{color:var(--ink-soft);font-size:.9rem}

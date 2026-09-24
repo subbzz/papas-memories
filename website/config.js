@@ -9,5 +9,5 @@ window.PM_CONFIG = {
   // Cloudflare Turnstile site key (public). Leave "" to turn the human check off.
   turnstileSiteKey: "0x4AAAAAAE1QDDTRPqXysEAo",
   ownerUpn: "s.subiah@septagon.com.au",
-  folders: ["Audio", "Video", "Mama", "MamaWedding", "MamaCeremony"]
+  folders: ["Audio", "Video", "Mama", "MamaWedding", "MamaCeremony", "Keepsakes"]
 };
