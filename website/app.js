@@ -476,10 +476,10 @@
       if (it.kind === "image") {
         const img = document.createElement("img");
         img.src = m.url; img.alt = it.title; img.className = "frame-img";
-        img.addEventListener("click", () => img.classList.toggle("zoomed"));
+        img.addEventListener("click", () => lightbox(m.url, it.title));
         slot.replaceChildren(img);
         const hint = document.createElement("figcaption");
-        hint.className = "frame-hint"; hint.textContent = "Tap the picture to zoom in";
+        hint.className = "frame-hint"; hint.textContent = "Tap the picture to open it big (then ➕ to zoom in)";
         slot.appendChild(hint);
         $("#spLink").innerHTML = m.webUrl && isOwner() ? `<a href="${esc(m.webUrl)}" target="_blank" rel="noopener noreferrer">📁 Open original in SharePoint</a>` : "";
         return;
@@ -513,6 +513,37 @@
     } catch (e) {
       const slot = $("#mediaSlot"); if (slot) slot.innerHTML = errorHtml(e);
     }
+  }
+
+  /* ---------- big-picture viewer (keepsakes) ---------- */
+  function lightbox(src, title) {
+    const box = document.createElement("div");
+    box.className = "lightbox";
+    box.innerHTML = `<div class="lb-bar">
+        <button class="btn" type="button" data-z="-" aria-label="Smaller">➖</button>
+        <span class="lb-pct">100%</span>
+        <button class="btn" type="button" data-z="+" aria-label="Bigger">➕</button>
+        <button class="btn btn-pink" type="button" data-z="x">✕ Close</button>
+      </div><div class="lb-scroll"><img alt=""></div>`;
+    const img = box.querySelector("img"), pct = box.querySelector(".lb-pct");
+    img.src = src; img.alt = title;
+    let z = 1;
+    const apply = () => { img.style.width = (z * 100) + "%"; pct.textContent = Math.round(z * 100) + "%"; };
+    const zoom = d => { z = Math.min(6, Math.max(1, Math.round((z + d) * 2) / 2)); apply(); };
+    const key = e => {
+      if (e.key === "Escape") close();
+      else if (e.key === "+" || e.key === "=") zoom(0.5);
+      else if (e.key === "-" || e.key === "_") zoom(-0.5);
+    };
+    function close() { box.remove(); document.body.classList.remove("lb-open"); removeEventListener("keydown", key); }
+    box.addEventListener("click", e => {
+      const b = e.target.closest("[data-z]");
+      if (b) { if (b.dataset.z === "x") close(); else zoom(b.dataset.z === "+" ? 0.5 : -0.5); return; }
+      if (e.target === img) { z = z >= 2.5 ? 1 : z + 1; apply(); return; } // tap the picture: bigger, then back
+      close(); // tap the dark space
+    });
+    addEventListener("keydown", key);
+    document.body.appendChild(box); document.body.classList.add("lb-open"); apply();
   }
 
   function wirePlayer(el, it, next) {
