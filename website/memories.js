@@ -39,7 +39,7 @@ window.MEMORIES = {
    "name": "Keepsakes & Photos",
    "blurb": "Her own handwriting, and photos worth framing.",
    "color": "#a0c4ff",
-   "count": 2
+   "count": 3
   },
   {
    "id": "birthday",
@@ -1322,6 +1322,18 @@ window.MEMORIES = {
    "caption": "The tape's final moments. (Ceremony tape 2, from 47:28 · about 4 min.)",
    "added": "2026-09-16",
    "slug": "mama-ceremony-28"
+  },
+  {
+   "kind": "image",
+   "folder": "Keepsakes",
+   "file": "Drawing-2021.png",
+   "cat": "keepsakes",
+   "emoji": "🎨",
+   "title": "A Room in Ink (2021)",
+   "caption": "Her pen-and-wash drawing of a bedroom: the bed under the window, a clock on the wall, a shelf of little treasures, a teddy in the cupboard and a map by the door. Tap the picture to zoom in.",
+   "added": "2026-09-25",
+   "slug": "a-room-in-ink-2021",
+   "when": "2021"
   },
   {
    "kind": "image",

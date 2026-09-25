@@ -23,6 +23,7 @@ export const ALLOWED = new Set([
  "Audio/Soundclip29.mp3",
  "Audio/ThathaAachi.mp3",
  "Audio/karan.mp3",
+ "Keepsakes/Drawing-2021.png",
  "Keepsakes/Rabbit-Pros-and-Cons.jpg",
  "Keepsakes/Santa-2009.jpg",
  "Mama/Mama-Tape-01.mp3",

@@ -163,15 +163,19 @@ EXTRA.append(dict(kind="image", folder="Keepsakes", file="Santa-2009.jpg", cat="
     title="With Santa, 2009",
     caption="One very small girl, one very large beard. The camera recorded 7 November 2009.", date=(7,11,2009)))
 
+EXTRA.append(dict(kind="image", folder="Keepsakes", file="Drawing-2021.png", cat="keepsakes", emoji="🎨",
+    title="A Room in Ink (2021)",
+    caption="Her pen-and-wash drawing of a bedroom: the bed under the window, a clock on the wall, a shelf of little treasures, a teddy in the cupboard and a map by the door. Tap the picture to zoom in.", date=(None,None,2021), added="2026-09-25"))
+
 # When each memory appeared on the site (used for the "new since your last visit" sparkles).
 ADDED_OLD, ADDED_MAMA_VIDEO, ADDED_KEEPSAKES = "2026-09-15", "2026-09-16", "2026-09-24"
 for it in items: it["added"] = ADDED_OLD
-for it in EXTRA: it["added"] = ADDED_KEEPSAKES if it["cat"] == "keepsakes" else ADDED_OLD
+for it in EXTRA: it.setdefault("added", ADDED_KEEPSAKES if it["cat"] == "keepsakes" else ADDED_OLD)
 items.extend(EXTRA)
 # Mama's wedding and ceremony clips (cut from the original discs; titles/captions in mama_video_clips.json)
 for it in json.load(open(os.path.join(HERE, "mama_video_clips.json"), encoding="utf-8")):
     items.append(dict(it, date=None, added=ADDED_MAMA_VIDEO))
-assert len(items) == 193, len(items)
+assert len(items) == 194, len(items)
 # No upload/backup dates: only dates embedded in the original file names are shown (see V/A tables).
 catorder = [c[0] for c in CATS]
 def sortkey(it):
