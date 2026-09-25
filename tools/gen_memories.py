@@ -7,6 +7,7 @@ CATS = [
   ("mamawedding", "💍", "Mama's Wedding Day", "Dada and Mama's big day on three old discs: family, rituals, the feast and the reception.", "#ffd6a5"),
   ("mamaceremony", "🌺", "Mama's Coming-of-Age Ceremony", "Silk, jasmine, blessings and a big family feast, from two old VHS tapes.", "#caffbf"),
   ("keepsakes", "🖼️", "Keepsakes & Photos", "Her own handwriting, and photos worth framing.", "#a0c4ff"),
+  ("art", "🖌️", "Her Drawing Board", "Drawings she makes on the iPad: characters, dragons and sketchbook pages.", "#bdb2ff"),
   ("birthday", "🎂", "Cake, Candles & Party Hats",   "Wishes, presents, games and a lot of cake.",             "#ffb347"),
   ("easter",   "🐣", "Egg Hunts & Easter Shows",     "Chocolate eggs, face paint and carousel rides.",         "#b5e48c"),
   ("zoo",      "🦁", "Zoo Days & Big Adventures",    "Climbing, swinging, sliding, riding. Go, go, go!",       "#8ecae6"),
@@ -167,6 +168,9 @@ EXTRA.append(dict(kind="image", folder="Keepsakes", file="Drawing-2021.png", cat
     title="A Room in Ink (2021)",
     caption="Her pen-and-wash drawing of a bedroom: the bed under the window, a clock on the wall, a shelf of little treasures, a teddy in the cupboard and a map by the door. Tap the picture to zoom in.", date=(None,None,2021), added="2026-09-25"))
 
+# iPad drawings (titles/captions in art_clips.json)
+EXTRA.extend(dict(it, date=None) for it in json.load(open(os.path.join(HERE, "art_clips.json"), encoding="utf-8")))
+
 # When each memory appeared on the site (used for the "new since your last visit" sparkles).
 ADDED_OLD, ADDED_MAMA_VIDEO, ADDED_KEEPSAKES = "2026-09-15", "2026-09-16", "2026-09-24"
 for it in items: it["added"] = ADDED_OLD
@@ -175,7 +179,7 @@ items.extend(EXTRA)
 # Mama's wedding and ceremony clips (cut from the original discs; titles/captions in mama_video_clips.json)
 for it in json.load(open(os.path.join(HERE, "mama_video_clips.json"), encoding="utf-8")):
     items.append(dict(it, date=None, added=ADDED_MAMA_VIDEO))
-assert len(items) == 194, len(items)
+assert len(items) == 227, len(items)
 # No upload/backup dates: only dates embedded in the original file names are shown (see V/A tables).
 catorder = [c[0] for c in CATS]
 def sortkey(it):
