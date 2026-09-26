@@ -179,7 +179,7 @@ items.extend(EXTRA)
 # Mama's wedding and ceremony clips (cut from the original discs; titles/captions in mama_video_clips.json)
 for it in json.load(open(os.path.join(HERE, "mama_video_clips.json"), encoding="utf-8")):
     items.append(dict(it, date=None, added=ADDED_MAMA_VIDEO))
-assert len(items) == 227, len(items)
+assert len(items) == 259, len(items)
 # No upload/backup dates: only dates embedded in the original file names are shown (see V/A tables).
 catorder = [c[0] for c in CATS]
 def sortkey(it):

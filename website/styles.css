@@ -384,3 +384,18 @@ html[data-tint="peach"] body{--paper:#fff8f2;--paper2:#fdeade;--wash1:rgba(255,1
 .lb-scroll img{display:inline-block;max-width:none;height:auto;background:#fff;border-radius:8px;cursor:zoom-in;box-shadow:0 10px 30px rgba(0,0,0,.4)}
 body.lb-open{overflow:hidden}
 .frame-hint{color:var(--ink-soft);font-size:.9rem}
+
+/* ---------- print a keepsake for the fridge ---------- */
+.btn-mint{background:var(--mint)}
+.print-only{display:none}
+@media print{
+  .topbar,.foot,.doodles,.music-btn,.crumbs,.side,.toast,.lightbox,.frame-hint,#confetti{display:none!important}
+  body{background:#fff!important;padding:0}
+  main{padding:0;max-width:none}
+  .memory{display:block}
+  .memory h1{font-size:1.6rem;text-align:center;margin:0 0 6px}
+  .frame{border:0;box-shadow:none;padding:0;background:#fff}
+  .frame-img{max-height:none;max-width:100%;width:auto;border:0;border-radius:0}
+  .print-only{display:block;text-align:center;margin-top:8px;font-family:var(--hand);font-size:1.2rem;color:#000}
+  @page{margin:12mm}
+}

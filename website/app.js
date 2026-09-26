@@ -453,6 +453,7 @@
             <button class="btn" type="button" data-act="fav" aria-pressed="${isFav}">${isFav ? "💖 Loved" : "🤍 Love it"}</button>
             <button class="btn btn-sky" type="button" data-act="copy">🔗 Copy link</button>
             <button class="btn btn-sun" type="button" data-act="shuffle">🎲 Surprise me</button>
+            ${it.kind === "image" ? `<button class="btn btn-mint" type="button" data-act="print" title="Print this one for the fridge">🖨️ Print it!</button>` : ""}
           </div>
           <label class="autoplay"><input type="checkbox" id="autoNext" ${store.get("autoNext", false) ? "checked" : ""}> Keep playing the next memory</label>
           <div class="navpair">
@@ -481,6 +482,10 @@
         const hint = document.createElement("figcaption");
         hint.className = "frame-hint"; hint.textContent = "Tap the picture to open it big (then ➕ to zoom in)";
         slot.appendChild(hint);
+        const sheet = document.createElement("figcaption"); // only shows on paper
+        sheet.className = "print-only";
+        sheet.textContent = `${it.emoji} ${it.title}${it.when ? " · " + it.when : ""} · Papa & Mama Memories`;
+        slot.appendChild(sheet);
         $("#spLink").innerHTML = m.webUrl && isOwner() ? `<a href="${esc(m.webUrl)}" target="_blank" rel="noopener noreferrer">📁 Open original in SharePoint</a>` : "";
         return;
       }
@@ -660,6 +665,9 @@
       else { favs.add(slug); toast("💖 Added to favourites!"); confetti(60); }
       saveFavs();
       const on = favs.has(slug); b.setAttribute("aria-pressed", on); b.textContent = on ? "💖 Loved" : "🤍 Love it";
+    } else if (act === "print") {
+      toast("🖨️ Sending it to the printer…");
+      setTimeout(() => print(), 250);
     } else if (act === "copy") {
       try { await navigator.clipboard.writeText(location.href); toast("🔗 Link copied!"); } catch { toast("Couldn't copy. Use the address bar."); }
     }
