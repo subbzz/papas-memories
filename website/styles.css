@@ -399,3 +399,25 @@ body.lb-open{overflow:hidden}
   .print-only{display:block;text-align:center;margin-top:8px;font-family:var(--hand);font-size:1.2rem;color:#000}
   @page{margin:12mm}
 }
+
+/* ---------- scrolling ribbon of pictures ---------- */
+.ribbon{position:relative;overflow:hidden;margin:4px 0 26px;padding:10px 0;border-top:3px dashed rgba(59,42,74,.18);border-bottom:3px dashed rgba(59,42,74,.18)}
+.ribbon-track{display:flex;gap:18px;width:max-content;animation:ribbon var(--secs,90s) linear infinite}
+.ribbon:hover .ribbon-track,.ribbon.paused .ribbon-track{animation-play-state:paused}
+@keyframes ribbon{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+.rib{flex:0 0 auto;width:260px;text-decoration:none;color:var(--ink);background:#fff;border:3px solid var(--ink);border-radius:16px;
+  padding:10px;box-shadow:5px 5px 0 var(--ink);display:grid;gap:6px;transition:transform .18s ease}
+.rib:hover{transform:translateY(-4px) rotate(-1deg)}
+.rib-pic{display:grid;place-items:center;height:210px;overflow:hidden;border-radius:10px;background:#f6f1e7}
+.rib-pic img{width:100%;height:100%;object-fit:cover;display:block}
+.rib-cap{font-family:var(--hand);font-size:1.15rem;line-height:1.1;text-align:center;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ribbon-stop{position:absolute;right:10px;bottom:14px;z-index:3;font-size:.9rem;padding:.25em .8em}
+@media (max-width:560px){.rib{width:200px}.rib-pic{height:160px}}
+@media (prefers-reduced-motion:reduce){.ribbon-track{animation:none}}
+/* bigger tiles in picture boxes */
+.wall-big{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:30px 24px}
+.wall-big .photo{aspect-ratio:1/1}
+.wall-big .polaroid .cap{font-size:1.35rem}
+@media (max-width:560px){.wall-big{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
+@media print{.ribbon{display:none!important}}

@@ -372,21 +372,41 @@
     applyVars(box);
   }
 
+  // Pictures look best big and moving: a slow ribbon that loops for ever, pausing when you touch it.
+  function ribbonHtml(list) {
+    const card = it => {
+      const m = mediaFor(it);
+      const pic = m?.thumb ? `<img src="${esc(m.thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : `<span class="ph-emo">${it.emoji}</span>`;
+      return `<a class="rib" href="#/m/${it.slug}"><span class="rib-pic">${pic}</span><span class="rib-cap">${it.emoji} ${esc(it.title)}</span></a>`;
+    };
+    const run = list.map(card).join("");
+    const secs = Math.max(40, list.length * 7);
+    return `<div class="ribbon" style="--secs:${secs}s">
+      <div class="ribbon-track">${run}${run}</div>
+      <button class="btn btn-ghost ribbon-stop" type="button" data-act="ribbon" aria-pressed="false">⏸ Pause</button>
+    </div>`;
+  }
+
   function viewCategory(id) {
     const c = CATS[id]; if (!c) return viewLanding();
     const w = WORLD_OF[id];
+    const pics = ITEMS.filter(it => it.cat === id).every(it => it.kind === "image");
     if (w.cats.length === 1) return viewWorld(w.id);
     setTitle(c.name);
     const list = ITEMS.filter(it => it.cat === id);
     app.innerHTML = `
       <div class="crumbs"><a class="chip" href="#/">🏠 Home</a><a class="chip" href="#/${w.id}" data-c="${w.color}">${w.emoji} ${esc(w.name)}</a></div>
       <h1 class="section-title flush"><span class="big">${c.emoji}</span> ${esc(c.name)}</h1>
-      <p>${esc(c.blurb)} <b>${list.length}</b> ${["tapes", "mama"].includes(id) ? "tapes" : "clips"} inside.</p>
-      <div class="tools"><button class="btn btn-sun" type="button" data-act="play-cat" data-cat="${id}">▶ Play this box from the start</button></div>
+      <p>${esc(c.blurb)} <b>${list.length}</b> ${["tapes", "mama"].includes(id) ? "tapes" : pics ? "pictures" : "clips"} inside.</p>
+      <div class="tools">${pics
+        ? `<button class="btn btn-sun" type="button" data-act="shuffle">🎲 Show me one</button>`
+        : `<button class="btn btn-sun" type="button" data-act="play-cat" data-cat="${id}">▶ Play this box from the start</button>`}</div>
       <div id="wall">${loadingHtml("Opening the box…")}</div>`;
+    const pictures = list.length > 1 && list.every(it => it.kind === "image");
     loadMedia().then(() => {
       const w = $("#wall"); if (!w) return;
-      w.innerHTML = `<div class="wall">${list.map(it => polaroid(it, it.idx)).join("")}</div>`;
+      w.innerHTML = (pictures ? ribbonHtml(list) : "") +
+        `<div class="wall${pictures ? " wall-big" : ""}">${list.map(it => polaroid(it, it.idx)).join("")}</div>`;
       applyVars(w);
     }).catch(e => { const w = $("#wall"); if (w) w.innerHTML = errorHtml(e); });
     if (id === "birthday") setTimeout(() => confetti(90), 250);
@@ -656,7 +676,12 @@
   document.addEventListener("click", async e => {
     const b = e.target.closest("[data-act]"); if (!b) return;
     const act = b.dataset.act;
-    if (act === "shuffle") shuffle();
+    if (act === "ribbon") {
+      const box = b.closest(".ribbon"), on = box.classList.toggle("paused");
+      b.setAttribute("aria-pressed", String(on));
+      b.textContent = on ? "▶ Play" : "⏸ Pause";
+    }
+    else if (act === "shuffle") shuffle();
     else if (act === "retry") { await loadMedia(true).catch(() => {}); route(); }
     else if (act === "play-cat") { const first = ITEMS.find(i => i.cat === b.dataset.cat); store.set("autoNext", true); sessionStorage.setItem("pm:autostart", "1"); location.hash = `#/m/${first.slug}`; }
     else if (act === "fav") {
