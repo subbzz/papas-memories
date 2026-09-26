@@ -264,6 +264,33 @@
     let h = 0; for (const ch of key) h = (h * 31 + ch.charCodeAt(0)) >>> 0; // same memory for everyone, all day
     return ITEMS[h % ITEMS.length];
   }
+  function untilMidnight() {
+    const now = new Date(), next = new Date(now); next.setHours(24, 0, 0, 0);
+    const mins = Math.max(1, Math.round((next - now) / 60000));
+    return mins < 60 ? `${mins} min` : `${Math.floor(mins / 60)} h ${mins % 60} min`;
+  }
+  function todayCard() {
+    const t = todaysPick(), w = WORLD_OF[t.cat], c = CATS[t.cat];
+    const kind = t.kind === "audio" ? ["🎧", "Listen to today's memory"]
+      : t.kind === "image" ? ["🔍", "Look at today's picture"] : ["▶", "Play today's memory"];
+    const today = new Date().toLocaleDateString("en-AU", { weekday: "long", day: "numeric", month: "long" });
+    return `<a class="today" id="todayCard" href="#/m/${t.slug}" data-c="${w.color}" data-slug="${t.slug}">
+      <span class="today-shot" id="todayShot" data-c="${c.color}">
+        ${t.kind === "audio" ? `<span class="cassette-mini" aria-hidden="true"><i></i><i></i></span>` : ""}
+        <span class="today-emo" aria-hidden="true">${t.emoji}</span>
+        <span class="today-badge" aria-hidden="true">${kind[0]}</span>
+      </span>
+      <span class="today-body">
+        <span class="today-tag">🌞 Today's memory · ${esc(today)}</span>
+        <b class="today-title">${esc(t.title)}</b>
+        <span class="today-cap">${esc(t.caption)}</span>
+        <span class="today-row"><span class="btn btn-pink">${kind[0]} ${kind[1]}</span>
+          <span class="today-from">${w.emoji} ${esc(c.name)}</span></span>
+        <span class="today-next">🌙 A different one lands in ${untilMidnight()}</span>
+      </span>
+      <span class="today-tape" aria-hidden="true"></span></a>`;
+  }
+
   function viewNew() {
     setTitle("New memories");
     const list = ITEMS.filter(it => NEW.has(it.slug));
@@ -298,19 +325,21 @@
         <h1 class="landing-title">Two treasure boxes, <span class="pop">one</span> happy family.</h1>
         <p class="landing-sub">Whose memories shall we open today?</p>
         <div class="worlds">${card(WORLDS.papa, 0)}${card(WORLDS.mama, 1)}</div>
-        ${(() => { const t = todaysPick(); const w = WORLD_OF[t.cat];
-          return `<a class="today" href="#/m/${t.slug}" data-c="${w.color}">
-            <span class="today-tag">🌞 Today's memory</span>
-            <span class="today-emo" aria-hidden="true">${t.emoji}</span>
-            <span class="today-title">${esc(t.title)}</span>
-            <span class="today-cap">${esc(t.caption)}</span>
-            <span class="btn btn-pink">▶ Play today's memory</span></a>`; })()}
+        ${todayCard()}
         ${NEW.size ? `<a class="new-chip" href="#/new">✨ ${NEW.size} new since your last visit</a>` : ""}
         <div class="landing-actions"><button class="btn btn-big btn-sun" type="button" data-act="shuffle">🎲 Surprise me from anywhere!</button>
           <a class="btn btn-big btn-ghost" href="#/favourites">💖 My favourites</a></div>
       </section>`;
     $("#hello").textContent = greetText();
     applyVars();
+    loadMedia().then(() => {
+      const shot = $("#todayShot"), card = $("#todayCard"); if (!shot || !card) return;
+      const it = BY_SLUG[card.dataset.slug], m = mediaFor(it);
+      if (!m?.thumb) return;
+      const img = document.createElement("img");
+      img.src = m.thumb; img.alt = ""; img.loading = "lazy"; img.referrerPolicy = "no-referrer";
+      shot.prepend(img); shot.classList.add("has-shot");
+    }).catch(() => { /* the emoji stands in */ });
     app.querySelectorAll(".world-peek span").forEach(s => s.style.animationDelay = `-${s.dataset.d}s`);
   }
 
